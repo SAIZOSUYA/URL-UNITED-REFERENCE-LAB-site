@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | URL - Your Partner For Diagnosis</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="admin-login-body">
+
+  <div class="admin-login-card">
+    <div class="admin-login-header">
+      <img src="assets/logo.png" alt="URL Logo" class="logo-img">
+      <h2>Admin Staff Portal</h2>
+      <p>Enter your unique admin code to manage center location and site settings.</p>
+    </div>
+
+    <div class="login-code-box">
+      <i data-feather="key" style="vertical-align: middle; margin-right: 4px;"></i>
+      Default Unique Admin Code: <strong>URL-DIAG-2026</strong>
+    </div>
+
+    <div id="login-alert" class="alert-box alert-error" style="display: none;"></div>
+
+    <form id="admin-login-form">
+      <div class="form-group">
+        <label for="admin-code" class="form-label">Unique Admin Access Code</label>
+        <input type="password" id="admin-code" class="form-control" placeholder="Enter Access Code" required autofocus>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+        <i data-feather="log-in"></i> Authenticate & Proceed
+      </button>
+    </form>
+
+    <div style="text-align: center; margin-top: 24px; font-size: 0.88rem;">
+      <a href="index.html" style="color: var(--brand-green); font-weight: 600;">
+        &larr; Back to Public Main Website
+      </a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    feather.replace();
+
+    document.getElementById('admin-login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const codeInput = document.getElementById('admin-code').value.trim();
+      const config = getClinicConfig();
+      const alertBox = document.getElementById('login-alert');
+
+      if (codeInput === config.accessCode || codeInput === 'URL-DIAG-2026') {
+        localStorage.setItem('url_admin_logged_in', 'true');
+        alertBox.style.display = 'block';
+        alertBox.className = 'alert-box alert-success';
+        alertBox.innerHTML = '<i data-feather="check-circle"></i> Authentication successful! Redirecting to Location Manager...';
+        feather.replace();
+        
+        setTimeout(() => {
+          window.location.href = 'admin.html';
+        }, 800);
+      } else {
+        alertBox.style.display = 'block';
+        alertBox.className = 'alert-box alert-error';
+        alertBox.innerHTML = '<i data-feather="x-circle"></i> Invalid Unique Login Code. Please check and try again.';
+        feather.replace();
+      }
+    });
+  </script>
+</body>
+</html>

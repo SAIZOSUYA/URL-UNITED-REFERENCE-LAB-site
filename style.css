@@ -3405,6 +3405,162 @@ body {
     transform: perspective(800px) scale(0.98) translateZ(6px);
     box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(27, 123, 58, 0.15) !important;
   }
+
+  /* Enhanced Mobile Navigation Drawer */
+  .nav-menu {
+    position: fixed;
+    top: 58px;
+    left: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 18px 14px;
+    gap: 8px;
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(21, 99, 47, 0.15);
+    transform: translateY(-130%) scale(0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 9999;
+  }
+
+  .nav-menu.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-link {
+    font-size: 0.96rem;
+    font-weight: 700;
+    padding: 12px 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #1E293B;
+    background: rgba(241, 245, 249, 0.6);
+    transition: all 0.2s ease;
+  }
+
+  .nav-link:active, .nav-link.active {
+    background: #15632F;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(21, 99, 47, 0.25);
+  }
+
+  /* Mobile Touch-Optimized Form & Cards */
+  .connect-form-card {
+    padding: 24px 16px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 12px 32px rgba(21, 99, 47, 0.12) !important;
+  }
+
+  .form-group {
+    margin-bottom: 16px !important;
+  }
+
+  .form-label {
+    font-size: 0.86rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 6px !important;
+    color: #1E293B !important;
+  }
+
+  .form-input, .form-select {
+    height: 48px !important;
+    border-radius: 12px !important;
+    font-size: 16px !important;
+    padding: 0 14px !important;
+    border: 1.5px solid #CBD5E1 !important;
+    background: #FFFFFF !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .form-input:focus, .form-select:focus {
+    border-color: #15632F !important;
+    box-shadow: 0 0 0 3.5px rgba(21, 99, 47, 0.18) !important;
+  }
+
+  .btn-submit-connect {
+    height: 52px !important;
+    border-radius: 14px !important;
+    font-size: 0.94rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, #15632F 0%, #0D4520 100%) !important;
+    box-shadow: 0 6px 20px rgba(21, 99, 47, 0.3) !important;
+  }
+
+  .btn-submit-connect:active {
+    transform: scale(0.98) !important;
+  }
+}
+
+/* ==========================================
+ * MOBILE FLOATING QUICK ACTION BOTTOM BAR
+ * ========================================== */
+.mobile-bottom-bar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-bottom-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(21, 99, 47, 0.15);
+    box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.08);
+    z-index: 9990;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 6px;
+  }
+
+  .mobile-bar-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-decoration: none;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #475569;
+    padding: 6px 0;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-bar-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.2px;
+  }
+
+  .mobile-bar-btn.call { color: #0284C7; }
+  .mobile-bar-btn.whatsapp { color: #16A34A; }
+  .mobile-bar-btn.book { color: #15632F; font-weight: 800; }
+  .mobile-bar-btn.outlets { color: #7C3AED; }
+
+  .mobile-bar-btn:active {
+    transform: scale(0.92);
+    background: rgba(21, 99, 47, 0.06);
+  }
+
+  /* Bottom padding to prevent content overlap on mobile */
+  body {
+    padding-bottom: 68px !important;
+  }
 }
 
 

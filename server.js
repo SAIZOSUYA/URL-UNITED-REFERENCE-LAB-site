@@ -21,8 +21,11 @@ const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'url_diag_production_secure_jwt_secret_key_84920482094';
 const IS_PROD = process.env.NODE_ENV === 'production';
 
-// Paths
-const DATA_DIR = path.join(__dirname, 'data');
+// Paths (Support Vercel writable /tmp environment)
+const IS_VERCEL = !!process.env.VERCEL || !!process.env.AWS_EXECUTION_ENV;
+const DATA_DIR = IS_VERCEL ? path.join('/tmp', 'data') : path.join(__dirname, 'data');
+const SEED_DATA_DIR = path.join(__dirname, 'data');
+
 const CONFIG_FILE = path.join(DATA_DIR, 'clinic_config.json');
 const TEMPLATE_FILE = path.join(DATA_DIR, 'site_template.json');
 const ADMIN_AUTH_FILE = path.join(DATA_DIR, 'admin_auth.json');
@@ -31,6 +34,22 @@ const DB_FILE = path.join(DATA_DIR, 'appointments.sqlite');
 // Ensure Data Directory Exists
 if (!fs.existsSync(DATA_DIR)) {
   fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+
+// Copy seed data files to /tmp/data on Vercel if needed
+if (IS_VERCEL && fs.existsSync(SEED_DATA_DIR)) {
+  try {
+    const seedFiles = fs.readdirSync(SEED_DATA_DIR);
+    for (const file of seedFiles) {
+      const src = path.join(SEED_DATA_DIR, file);
+      const dest = path.join(DATA_DIR, file);
+      if (!fs.existsSync(dest) && fs.statSync(src).isFile()) {
+        fs.copyFileSync(src, dest);
+      }
+    }
+  } catch (e) {
+    console.error('Vercel data initialization warning:', e.message);
+  }
 }
 
 // 1. HELMET & SECURITY HEADERS
@@ -628,15 +647,19 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`
-  🏥 =========================================================
-  UNITED REFERENCE LABORATORY - PRODUCTION BACKEND
-  Running at: http://localhost:${PORT}
-  Admin Login: http://localhost:${PORT}/admin-login.html
-  Database Hub: http://localhost:${PORT}/dashboard.html
-  Database File: data/appointments.sqlite
-  ========================================================= 🏥
-  `);
-});
+// Start Server (Only when run directly, not imported by Vercel serverless)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`
+    🏥 =========================================================
+    UNITED REFERENCE LABORATORY - PRODUCTION BACKEND
+    Running at: http://localhost:${PORT}
+    Admin Login: http://localhost:${PORT}/admin-login.html
+    Database Hub: http://localhost:${PORT}/dashboard.html
+    Database File: ${DB_FILE}
+    ========================================================= 🏥
+    `);
+  });
+}
+
+module.exports = app;

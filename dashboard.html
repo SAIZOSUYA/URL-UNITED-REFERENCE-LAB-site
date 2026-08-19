@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Diagnostics - Enterprise Submissions Management Portal</title>
+  <link rel="stylesheet" href="style.css?v=2.5">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    :root {
+      --portal-bg: #F8FAFC;
+      --portal-header-bg: #FFFFFF;
+      --portal-card-bg: #FFFFFF;
+      --portal-brand-green: #1B7B3A;
+      --portal-brand-green-hover: #145E2C;
+      --portal-brand-red: #ED1C24;
+      --text-heading: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --border-color: #E2E8F0;
+      --border-darker: #CBD5E1;
+    }
+
+    body {
+      background-color: var(--portal-bg);
+      color: var(--text-body);
+      font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Top Corporate Navigation Header */
+    .portal-nav-header {
+      background: var(--portal-header-bg);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .portal-nav-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      width: 94%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .nav-brand-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-logo-link img {
+      height: 42px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .brand-divider {
+      width: 1px;
+      height: 28px;
+      background-color: var(--border-darker);
+    }
+
+    .portal-title-box h1 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0;
+      color: var(--text-heading);
+    }
+
+    .portal-title-box p {
+      font-size: 0.78rem;
+      margin: 2px 0 0;
+      color: var(--text-muted);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .session-badge {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.74rem;
+      font-family: monospace;
+    }
+
+    .nav-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-portal {
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-portal-outline {
+      background: #FFFFFF;
+      color: #334155;
+      border: 1px solid var(--border-darker);
+    }
+
+    .btn-portal-outline:hover {
+      background: #F8FAFC;
+      border-color: #94A3B8;
+    }
+
+    .btn-portal-primary {
+      background: var(--portal-brand-green);
+      color: #FFFFFF;
+      border: 1px solid var(--portal-brand-green);
+    }
+
+    .btn-portal-primary:hover {
+      background: var(--portal-brand-green-hover);
+    }
+
+    .btn-portal-danger {
+      background: #FEF2F2;
+      color: #DC2626;
+      border: 1px solid #FCA5A5;
+    }
+
+    .btn-portal-danger:hover {
+      background: #DC2626;
+      color: #FFFFFF;
+    }
+
+    /* Page Area */
+    .page-container {
+      width: 94%;
+      max-width: 1400px;
+      margin: 24px auto 60px;
+    }
+
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin: 0;
+    }
+
+    .view-toggle-tabs {
+      display: flex;
+      background: #E2E8F0;
+      padding: 3px;
+      border-radius: 8px;
+    }
+
+    .tab-btn {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #64748B;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn.active {
+      background: #FFFFFF;
+      color: var(--text-heading);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .kpi-card {
+      background: var(--portal-card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-info h3 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin: 0;
+    }
+
+    .kpi-info p {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin: 4px 0 0;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .kpi-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Table Container */
+    .main-table-card {
+      background: var(--portal-card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+      padding: 20px;
+    }
+
+    .toolbar-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .search-filter-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      width: 280px;
+      max-width: 100%;
+    }
+
+    .search-input-wrap input {
+      width: 100%;
+      padding: 8px 12px 8px 36px;
+      border: 1px solid var(--border-darker);
+      border-radius: 8px;
+      font-size: 0.86rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .search-input-wrap svg {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      width: 16px;
+      height: 16px;
+    }
+
+    .select-filter {
+      padding: 8px 12px;
+      border: 1px solid var(--border-darker);
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-body);
+      background: #FFFFFF;
+      outline: none;
+    }
+
+    .bulk-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Data Table */
+    .table-responsive-box {
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+    }
+
+    table.portal-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.86rem;
+    }
+
+    table.portal-data-table th {
+      background: #F8FAFC;
+      padding: 12px 14px;
+      font-weight: 700;
+      color: #475569;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+    }
+
+    table.portal-data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #F1F5F9;
+      vertical-align: middle;
+    }
+
+    table.portal-data-table tbody tr:hover {
+      background-color: #F8FAFC;
+    }
+
+    .code-badge-pill {
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.82rem;
+      background: #F1F5F9;
+      color: #334155;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #CBD5E1;
+      white-space: nowrap !important;
+      display: inline-block !important;
+    }
+
+    .status-badge-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .badge-pending { background: #FEF3C7; color: #92400E; border-color: #FCD34D; }
+    .badge-confirmed { background: #D1FAE5; color: #065F46; border-color: #6EE7B7; }
+
+    /* Pagination Bar */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-page {
+      background: #FFFFFF;
+      border: 1px solid var(--border-darker);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .btn-page:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(3px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+    .modal-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 540px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #F1F5F9;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .detail-grid-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid #F1F5F9;
+      font-size: 0.86rem;
+    }
+
+    /* Toast */
+    .toast-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 10000;
+    }
+
+    .toast-box.show { transform: translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- AUTHENTICATION GUARD AT TOP OF BODY -->
+  <script>
+    const adminToken = localStorage.getItem('url_admin_token');
+    const expiresAt = parseInt(localStorage.getItem('url_admin_expires_at') || '0', 10);
+
+    if (!adminToken || (expiresAt && Date.now() > expiresAt)) {
+      localStorage.clear();
+      window.location.href = 'admin-login.html';
+    }
+  </script>
+
+  <!-- Corporate Header Bar -->
+  <header class="portal-nav-header">
+    <div class="container">
+      <div class="nav-brand-left">
+        <a href="index.html" class="nav-logo-link">
+          <img src="assets/logo.png" alt="URL Logo">
+        </a>
+        <div class="brand-divider"></div>
+        <div class="portal-title-box">
+          <h1>Diagnostic Submissions Manager</h1>
+          <p>
+            <span>Authenticated Admin: <strong id="header-admin-user" style="color:#0F172A;">admin</strong></span>
+            &bull; <span class="session-badge" id="session-timer-badge">Session: 08:00:00</span>
+          </p>
+        </div>
+      </div>
+      <div class="nav-actions-right">
+        <a href="index.html" class="btn-portal btn-portal-outline"><i data-feather="external-link"></i> Main Site</a>
+        <button id="refresh-btn" class="btn-portal btn-portal-primary"><i data-feather="refresh-cw"></i> Refresh</button>
+        <button id="export-csv-btn" class="btn-portal btn-portal-outline"><i data-feather="download"></i> Export CSV</button>
+        <button id="view-audit-btn" class="btn-portal btn-portal-outline"><i data-feather="shield"></i> Audit Logs</button>
+        <button onclick="logoutAdmin()" class="btn-portal btn-portal-danger"><i data-feather="log-out"></i> Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content Area -->
+  <div class="page-container">
+    
+    <div class="page-title-row">
+      <div>
+        <h2 class="page-title">Database Submissions & Workflow</h2>
+        <p style="margin: 4px 0 0; color: var(--text-muted); font-size: 0.86rem;">
+          Manage patient diagnostic requests with server-side pagination, audit logging & soft-delete.
+        </p>
+      </div>
+      
+      <!-- Active vs Archive Tabs -->
+      <div class="view-toggle-tabs">
+        <button id="tab-active" class="tab-btn active" onclick="switchViewTab(0)">Active Records</button>
+        <button id="tab-archived" class="tab-btn" onclick="switchViewTab(1)">Archived Records</button>
+      </div>
+    </div>
+
+    <!-- KPI Metric Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-info">
+          <h3 id="stat-total">0</h3>
+          <p>Total Query Records</p>
+        </div>
+        <div class="kpi-icon" style="background:#F1F5F9; color:#475569;"><i data-feather="database"></i></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-info">
+          <h3 id="stat-pending">0</h3>
+          <p>Pending Review</p>
+        </div>
+        <div class="kpi-icon" style="background:#FEF3C7; color:#B45309;"><i data-feather="clock"></i></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-info">
+          <h3 id="stat-confirmed">0</h3>
+          <p>Confirmed</p>
+        </div>
+        <div class="kpi-icon" style="background:#DCFCE7; color:#15803D;"><i data-feather="check-circle"></i></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-info">
+          <h3 id="stat-today">0</h3>
+          <p>Submitted Today</p>
+        </div>
+        <div class="kpi-icon" style="background:#E0F2FE; color:#0369A1;"><i data-feather="calendar"></i></div>
+      </div>
+    </div>
+
+    <!-- Main Table Card -->
+    <div class="main-table-card">
+      <div class="toolbar-bar">
+        <div class="search-filter-group">
+          <div class="search-input-wrap">
+            <i data-feather="search"></i>
+            <input type="text" id="search-input" placeholder="Search name, phone, test or code...">
+          </div>
+          <select id="status-filter" class="select-filter">
+            <option value="all">All Statuses</option>
+            <option value="Pending Review">Pending Review</option>
+            <option value="Confirmed">Confirmed</option>
+          </select>
+          <select id="limit-filter" class="select-filter">
+            <option value="10">10 per page</option>
+            <option value="25">25 per page</option>
+            <option value="50">50 per page</option>
+          </select>
+        </div>
+
+        <!-- Bulk Action Controls & Empty Archive Button -->
+        <div class="bulk-actions-group">
+          <button id="bulk-confirm-btn" class="btn-portal btn-portal-outline" onclick="executeBulkAction('confirm')" style="display:none;">
+            <i data-feather="check"></i> Confirm Selected (<span id="bulk-count-confirm">0</span>)
+          </button>
+          <button id="bulk-archive-btn" class="btn-portal btn-portal-danger" onclick="executeBulkAction('archive')" style="display:none;">
+            <i data-feather="archive"></i> Archive Selected (<span id="bulk-count-archive">0</span>)
+          </button>
+          <button id="empty-archive-btn" class="btn-portal btn-portal-danger" onclick="emptyArchive()" style="display:none;">
+            <i data-feather="trash-2"></i> Empty Archive (Purge All)
+          </button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-responsive-box">
+        <table class="portal-data-table">
+          <thead>
+            <tr>
+              <th style="width: 38px; text-align: center;"><input type="checkbox" id="select-all-chk"></th>
+              <th>Code</th>
+              <th>Full Name</th>
+              <th>Phone Number</th>
+              <th>Test Category</th>
+              <th>Selected Branch</th>
+              <th>Last Updated</th>
+              <th>Status (Toggle)</th>
+              <th style="text-align: right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Dynamic Rows -->
+          </tbody>
+        </table>
+        <div id="empty-msg" style="display: none; text-align: center; padding: 44px 20px; color: var(--text-muted);">
+          <i data-feather="inbox" style="width: 32px; height: 32px; color: #94A3B8; margin-bottom: 8px;"></i>
+          <p style="margin: 0; font-weight: 700; font-size: 0.95rem; color: #475569;">No appointments</p>
+        </div>
+      </div>
+
+      <!-- Server-side Pagination Bar -->
+      <div class="pagination-bar">
+        <div id="pagination-info">Showing page 1 of 1</div>
+        <div class="pagination-controls">
+          <button id="btn-prev-page" class="btn-page" onclick="changePage(-1)">&laquo; Prev</button>
+          <span id="page-num-display" style="font-weight: 700; color: #0F172A;">1</span>
+          <button id="btn-next-page" class="btn-page" onclick="changePage(1)">Next &raquo;</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- View Details Modal -->
+  <div class="modal-overlay" id="details-modal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <h3 style="margin-top: 0; color: var(--text-heading); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+        <i data-feather="file-text" style="color: var(--portal-brand-green);"></i> Patient Record & Admin Notes
+      </h3>
+      <div id="modal-content-body" style="margin-top: 16px;"></div>
+      <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <a id="modal-call-btn" href="#" class="btn-portal btn-portal-primary"><i data-feather="phone-call"></i> Call Patient Now</a>
+        <button class="btn-portal btn-portal-outline" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audit Logs Modal -->
+  <div class="modal-overlay" id="audit-modal">
+    <div class="modal-card" style="max-width: 700px;">
+      <button class="modal-close" onclick="closeAuditModal()">&times;</button>
+      <h3 style="margin-top: 0; color: var(--text-heading); font-size: 1.1rem; display: flex; align-items: center; gap: 8px;">
+        <i data-feather="shield" style="color: var(--portal-brand-green);"></i> Admin Audit Logs
+      </h3>
+      <div class="table-responsive-box" style="max-height: 400px; margin-top: 16px;">
+        <table class="portal-data-table" style="font-size: 0.8rem;">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Admin</th>
+              <th>Action</th>
+              <th>Target</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="audit-logs-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-box" id="toast-notification">
+    <i data-feather="check-circle" style="color: #4ADE80;"></i>
+    <span id="toast-text">Action completed.</span>
+  </div>
+
+  <script>
+    // State variables
+    let currentPage = 1;
+    let totalPages = 1;
+    let activeArchivedMode = 0; // 0 = Active, 1 = Archived
+    let selectedAppointmentCodes = new Set();
+
+    document.getElementById('header-admin-user').textContent = localStorage.getItem('url_admin_username') || 'admin';
+
+    // Live Session Timer
+    function startSessionTimer() {
+      const timerBadge = document.getElementById('session-timer-badge');
+      setInterval(() => {
+        const remainingMs = expiresAt - Date.now();
+        if (remainingMs <= 0) {
+          logoutAdmin();
+          return;
+        }
+        const totalSec = Math.floor(remainingMs / 1000);
+        const hrs = String(Math.floor(totalSec / 3600)).padStart(2, '0');
+        const mins = String(Math.floor((totalSec % 3600) / 60)).padStart(2, '0');
+        const secs = String(totalSec % 60).padStart(2, '0');
+        timerBadge.textContent = `Session: ${hrs}:${mins}:${secs}`;
+      }, 1000);
+    }
+    startSessionTimer();
+
+    function logoutAdmin() {
+      fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + adminToken }
+      }).catch(() => {});
+      localStorage.clear();
+      window.location.href = 'admin-login.html';
+    }
+
+    async function fetchAppointments() {
+      const q = document.getElementById('search-input').value.trim();
+      const status = document.getElementById('status-filter').value;
+      const limit = document.getElementById('limit-filter').value;
+
+      const url = `/api/appointments?page=${currentPage}&limit=${limit}&status=${status}&branch=all&search=${encodeURIComponent(q)}&archived=${activeArchivedMode}`;
+
+      try {
+        const res = await fetch(url, {
+          headers: { 'Authorization': 'Bearer ' + adminToken }
+        });
+
+        if (res.status === 401) return logoutAdmin();
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success) {
+            renderTable(data.appointments);
+            updatePaginationUI(data.pagination);
+          }
+        }
+      } catch (err) {
+        showToast('Error querying database.');
+      }
+    }
+
+    function renderTable(list) {
+      const tbody = document.getElementById('table-body');
+      const emptyMsg = document.getElementById('empty-msg');
+      tbody.innerHTML = '';
+      selectedAppointmentCodes.clear();
+      updateBulkButtonsUI();
+
+      if (list.length === 0) {
+        emptyMsg.style.display = 'block';
+        if (window.feather) feather.replace();
+        return;
+      }
+      emptyMsg.style.display = 'none';
+
+      list.forEach(item => {
+        const tr = document.createElement('tr');
+        const updatedDateStr = item.updated_at ? new Date(item.updated_at).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' }) : 'N/A';
+        const isConfirmed = item.status === 'Confirmed';
+        const statusClass = isConfirmed ? 'badge-confirmed' : 'badge-pending';
+        const statusIcon = isConfirmed ? 'check-circle' : 'clock';
+
+        tr.innerHTML = `
+          <td style="text-align: center;">
+            <input type="checkbox" class="row-chk" value="${item.id}" onchange="toggleRowSelect('${item.id}', this.checked)">
+          </td>
+          <td><span class="code-badge-pill">${item.id}</span></td>
+          <td><strong>${escapeHtml(item.name)}</strong></td>
+          <td><a href="tel:${item.phone}" style="color:#15632F; font-weight:700; text-decoration:none;">${escapeHtml(item.phone)}</a></td>
+          <td>${escapeHtml(item.test)}</td>
+          <td>${escapeHtml(item.branch)}</td>
+          <td><span style="font-size:0.78rem; color:#64748B;">${updatedDateStr}</span></td>
+          <td>
+            <span class="status-badge-btn ${statusClass}" onclick="toggleStatus('${item.id}', '${item.status}')" title="Click to update status">
+              <i data-feather="${statusIcon}" style="width:12px; height:12px;"></i> ${escapeHtml(item.status)}
+            </span>
+          </td>
+          <td style="text-align: right;">
+            <div style="display:flex; justify-content:flex-end; gap:6px;">
+              <button class="btn-portal btn-portal-outline" style="padding:4px 8px; font-size:0.76rem;" onclick='openModal(${JSON.stringify(item)})'><i data-feather="eye"></i> View</button>
+              ${activeArchivedMode === 0 ? `<button class="btn-portal btn-portal-danger" style="padding:4px 8px; font-size:0.76rem;" onclick="archiveRecord('${item.id}')"><i data-feather="archive"></i> Archive</button>` : ''}
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      if (window.feather) feather.replace();
+    }
+
+    function updatePaginationUI(p) {
+      if (!p) return;
+      currentPage = p.page;
+      totalPages = p.totalPages;
+      document.getElementById('stat-total').innerText = p.total;
+      document.getElementById('pagination-info').innerText = `Showing page ${p.page} of ${p.totalPages} (Total ${p.total} records)`;
+      document.getElementById('page-num-display').innerText = p.page;
+      document.getElementById('btn-prev-page').disabled = p.page <= 1;
+      document.getElementById('btn-next-page').disabled = p.page >= p.totalPages;
+    }
+
+    function changePage(delta) {
+      const target = currentPage + delta;
+      if (target >= 1 && target <= totalPages) {
+        currentPage = target;
+        fetchAppointments();
+      }
+    }
+
+    function switchViewTab(mode) {
+      activeArchivedMode = mode;
+      currentPage = 1;
+      document.getElementById('tab-active').classList.toggle('active', mode === 0);
+      document.getElementById('tab-archived').classList.toggle('active', mode === 1);
+      document.getElementById('empty-archive-btn').style.display = mode === 1 ? 'inline-flex' : 'none';
+      fetchAppointments();
+    }
+
+    function toggleRowSelect(code, checked) {
+      if (checked) selectedAppointmentCodes.add(code);
+      else selectedAppointmentCodes.delete(code);
+      updateBulkButtonsUI();
+    }
+
+    document.getElementById('select-all-chk').addEventListener('change', (e) => {
+      const chks = document.querySelectorAll('.row-chk');
+      chks.forEach(c => {
+        c.checked = e.target.checked;
+        toggleRowSelect(c.value, e.target.checked);
+      });
+    });
+
+    function updateBulkButtonsUI() {
+      const count = selectedAppointmentCodes.size;
+      document.getElementById('bulk-confirm-btn').style.display = count > 0 ? 'inline-flex' : 'none';
+      document.getElementById('bulk-archive-btn').style.display = count > 0 ? 'inline-flex' : 'none';
+      document.getElementById('bulk-count-confirm').textContent = count;
+      document.getElementById('bulk-count-archive').textContent = count;
+    }
+
+    async function executeBulkAction(action) {
+      const ids = Array.from(selectedAppointmentCodes);
+      if (ids.length === 0) return;
+      if (!confirm(`Are you sure you want to bulk ${action} ${ids.length} selected records?`)) return;
+
+      try {
+        const res = await fetch('/api/appointments/bulk-action', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + adminToken
+          },
+          body: JSON.stringify({ ids, action })
+        });
+        if (res.status === 401) return logoutAdmin();
+        if (res.ok) {
+          showToast(`Bulk ${action} executed successfully.`);
+          fetchAppointments();
+        }
+      } catch (err) {
+        showToast('Bulk action failed.');
+      }
+    }
+
+    async function toggleStatus(code, currentStatus) {
+      const newStatus = currentStatus === 'Confirmed' ? 'Pending Review' : 'Confirmed';
+      try {
+        const res = await fetch(`/api/appointments/${code}/status`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + adminToken
+          },
+          body: JSON.stringify({ status: newStatus })
+        });
+        if (res.status === 401) return logoutAdmin();
+        if (res.ok) {
+          showToast(`Updated status for ${code} to ${newStatus}`);
+          fetchAppointments();
+        }
+      } catch (err) {
+        showToast('Status update failed.');
+      }
+    }
+
+    async function archiveRecord(code) {
+      if (!confirm(`Archive record [${code}]?`)) return;
+      try {
+        const res = await fetch('/api/appointments/' + code, {
+          method: 'DELETE',
+          headers: { 'Authorization': 'Bearer ' + adminToken }
+        });
+        if (res.status === 401) return logoutAdmin();
+        if (res.ok) {
+          showToast(`Archived record [${code}].`);
+          fetchAppointments();
+        }
+      } catch (err) {
+        showToast('Archive action failed.');
+      }
+    }
+
+    async function emptyArchive() {
+      if (!confirm('Permanently purge all archived records? This action cannot be undone.')) return;
+      try {
+        const res = await fetch('/api/appointments/empty-archive', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + adminToken }
+        });
+        if (res.status === 401) return logoutAdmin();
+        if (res.ok) {
+          showToast('Purged all archived records.');
+          fetchAppointments();
+        }
+      } catch (err) {
+        showToast('Empty archive failed.');
+      }
+    }
+
+    // Protected CSV Export
+    document.getElementById('export-csv-btn').addEventListener('click', () => {
+      const q = document.getElementById('search-input').value.trim();
+      const status = document.getElementById('status-filter').value;
+      const exportUrl = `/api/appointments/export?status=${status}&branch=all&search=${encodeURIComponent(q)}&archived=${activeArchivedMode}&token=${adminToken}`;
+      window.open(exportUrl, '_blank');
+      showToast('Downloading CSV export...');
+    });
+
+    // Audit Log Viewer
+    document.getElementById('view-audit-btn').addEventListener('click', async () => {
+      try {
+        const res = await fetch('/api/audit-logs', {
+          headers: { 'Authorization': 'Bearer ' + adminToken }
+        });
+        if (res.status === 401) return logoutAdmin();
+        if (res.ok) {
+          const data = await res.json();
+          renderAuditLogs(data.logs || []);
+          document.getElementById('audit-modal').classList.add('active');
+        }
+      } catch (err) {
+        showToast('Failed to load audit logs.');
+      }
+    });
+
+    function renderAuditLogs(logs) {
+      const body = document.getElementById('audit-logs-body');
+      body.innerHTML = '';
+      logs.forEach(l => {
+        const tr = document.createElement('tr');
+        const timeStr = new Date(l.timestamp).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' });
+        tr.innerHTML = `
+          <td>${timeStr}</td>
+          <td><strong>${escapeHtml(l.admin_user)}</strong></td>
+          <td><span class="code-badge-pill">${escapeHtml(l.action)}</span></td>
+          <td>${escapeHtml(l.target_id || '-')}</td>
+          <td>${escapeHtml(l.details || '-')}</td>
+        `;
+        body.appendChild(tr);
+      });
+      if (window.feather) feather.replace();
+    }
+
+    function closeAuditModal() {
+      document.getElementById('audit-modal').classList.remove('active');
+    }
+
+    function openModal(item) {
+      const modal = document.getElementById('details-modal');
+      const body = document.getElementById('modal-content-body');
+      const createdStr = new Date(item.date).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' });
+      const updatedStr = new Date(item.updated_at).toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' });
+
+      body.innerHTML = `
+        <div class="detail-grid-row"><span style="color:#64748B;">Appointment Code:</span><span class="code-badge-pill">${item.id}</span></div>
+        <div class="detail-grid-row"><span style="color:#64748B;">Patient Full Name:</span><strong>${escapeHtml(item.name)}</strong></div>
+        <div class="detail-grid-row"><span style="color:#64748B;">Mobile Phone:</span><strong>${escapeHtml(item.phone)}</strong></div>
+        <div class="detail-grid-row"><span style="color:#64748B;">Test Category:</span><span>${escapeHtml(item.test)}</span></div>
+        <div class="detail-grid-row"><span style="color:#64748B;">Preferred Branch:</span><span>${escapeHtml(item.branch)}</span></div>
+        <div class="detail-grid-row"><span style="color:#64748B;">Submission Date:</span><span>${createdStr}</span></div>
+        <div class="detail-grid-row"><span style="color:#64748B;">Last Updated:</span><span>${updatedStr}</span></div>
+        <div class="detail-grid-row"><span style="color:#64748B;">Status:</span><strong>${escapeHtml(item.status)}</strong></div>
+      `;
+
+      document.getElementById('modal-call-btn').href = 'tel:' + item.phone;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('details-modal').classList.remove('active');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      document.getElementById('toast-text').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+
+    // Event Listeners
+    document.getElementById('search-input').addEventListener('input', () => { currentPage = 1; fetchAppointments(); });
+    document.getElementById('status-filter').addEventListener('change', () => { currentPage = 1; fetchAppointments(); });
+    document.getElementById('limit-filter').addEventListener('change', () => { currentPage = 1; fetchAppointments(); });
+    document.getElementById('refresh-btn').addEventListener('click', () => { showToast('Refreshing data...'); fetchAppointments(); });
+
+    // Initial Load
+    fetchAppointments();
+  </script>
+</body>
+</html>

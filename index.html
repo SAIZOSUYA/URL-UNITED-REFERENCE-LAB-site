@@ -4,42 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>United Reference Laboratory Pvt. Ltd. (URL) | Gandaki's First Reference Lab</title>
-  <meta name="description" content="United Reference Laboratory (URL) - NPHL Approved 'B' Grade & ISO 9001:2015 Certified Reference Laboratory in Nepal. Advanced pathology, biochemistry, immunoassay, and 24 service outlets across Gandaki Province.">
-  <link rel="stylesheet" href="style.css">
-  <!-- Feather Icons SVG helper CDN -->
+  <meta name="description" content="United Reference Laboratory (URL) - NPHL Approved Category 'B' & ISO 9001:2015 Certified Reference Laboratory in Nepal. Advanced pathology, biochemistry, immunoassay, and 24 service outlets across Gandaki Province.">
+  <link rel="stylesheet" href="style.css?v=6.5">
+  <!-- Feather Icons CDN -->
   <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
 
-  <!-- Top Announcement & Contact Bar -->
+  <!-- Top Announcement & Contact Bar with Continuous Sliding Animation -->
   <div class="top-bar">
-    <div class="container">
-      <div class="top-info">
+    <div class="top-bar-wrapper">
+      <div class="top-bar-track">
         <div class="top-info-item">
           <i data-feather="award"></i>
           <span>NPHL Category 'B' (Reg: 116029)</span>
         </div>
         <div class="top-info-item">
           <i data-feather="check-square"></i>
-          <span>ISO 9001:2015</span>
+          <span>ISO 9001:2015 Certified</span>
         </div>
         <div class="top-info-item">
           <i data-feather="phone"></i>
-          <span>Tel: +977-61-570503</span>
+          <span>Tel: +977-61-570503, 9856013595</span>
         </div>
         <div class="top-info-item">
           <i data-feather="clock"></i>
-          <span>24/7 Facility</span>
+          <span>Hospital Chowk 24/7 Facility</span>
+        </div>
+        <div>
+          <span class="top-badge-pill">13+ Years of Diagnostic Excellence</span>
+        </div>
+        <div class="top-info-item">
+          <i data-feather="map-pin"></i>
+          <span>24 Outlets Across 6 Districts</span>
+        </div>
+
+        <!-- Duplicated items for seamless infinite sliding loop -->
+        <div class="top-info-item">
+          <i data-feather="award"></i>
+          <span>NPHL Category 'B' (Reg: 116029)</span>
+        </div>
+        <div class="top-info-item">
+          <i data-feather="check-square"></i>
+          <span>ISO 9001:2015 Certified</span>
+        </div>
+        <div class="top-info-item">
+          <i data-feather="phone"></i>
+          <span>Tel: +977-61-570503, 9856013595</span>
+        </div>
+        <div class="top-info-item">
+          <i data-feather="clock"></i>
+          <span>Hospital Chowk 24/7 Facility</span>
+        </div>
+        <div>
+          <span class="top-badge-pill">13+ Years of Diagnostic Excellence</span>
+        </div>
+        <div class="top-info-item">
+          <i data-feather="map-pin"></i>
+          <span>24 Outlets Across 6 Districts</span>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- Main Brand Navigation Header -->
+  <!-- Main Sticky Brand Navigation Header (Nepal Madhyam Style) -->
   <header class="main-header">
     <div class="container">
-      <a href="index.html" class="logo-wrapper">
+      <a href="#home" class="logo-wrapper">
         <img src="assets/logo.png" alt="United Reference Laboratory (URL) Logo" class="logo-img">
       </a>
 
@@ -47,15 +78,20 @@
         <ul class="nav-menu" id="nav-menu">
           <li><a href="#home" class="nav-link active">Home</a></li>
           <li><a href="#about" class="nav-link">About URL</a></li>
-          <li><a href="#accreditation" class="nav-link">Certificates</a></li>
           <li><a href="#services" class="nav-link">Services & Tech</a></li>
-          <li><a href="#leadership" class="nav-link">Leadership & Experts</a></li>
-          <li><a href="#gallery" class="nav-link">Events Gallery</a></li>
-          <li><a href="#branches" class="nav-link">Branches & Contact</a></li>
+          <li><a href="#process" class="nav-link">Process</a></li>
+          <li><a href="#accreditation" class="nav-link">Accreditation</a></li>
+          <li><a href="#leadership" class="nav-link">Experts & Team</a></li>
+          <li><a href="#branches" class="nav-link">24 Outlets</a></li>
         </ul>
       </nav>
 
-      <div class="header-actions">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <a href="#connect" class="btn-connect-cta">
+          <span class="btn-text-desktop">LET'S CONNECT</span>
+          <span class="btn-text-mobile">CONNECT</span>
+          <i data-feather="arrow-right"></i>
+        </a>
         <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
           <i data-feather="menu"></i>
         </button>
@@ -63,25 +99,28 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- High-Impact Hero Section -->
   <section class="hero-section" id="home">
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content">
           <div class="hero-badge">
-            <i data-feather="shield"></i> Celebrating 13+ Years of Diagnostic Excellence (Since 2013)
+            <i data-feather="shield"></i> Celebrating 13+ Years of Excellence (Since 2013)
           </div>
           <h1 class="hero-title">
             Gandaki Province's <span class="highlight-green">First & Leading</span><br>
             <span class="highlight-red">Reference Laboratory</span>
           </h1>
           <p class="hero-subtitle">
-            United Reference Laboratory (URL) delivers accurate, internationally standardized diagnostic services across 24 service outlets, serving over 1.2 million individuals with 2,000+ referring doctors' trust.
+            United Reference Laboratory (URL) delivers accurate, US FDA-approved diagnostic services across 24 service outlets, serving over 1.2 million individuals with 2,000+ referring doctors' trust.
           </p>
 
           <div class="hero-actions">
-            <a href="#services" class="btn btn-primary">
-              <i data-feather="cpu"></i> Explore Technology
+            <a href="#connect" class="btn btn-primary">
+              <i data-feather="calendar"></i> LET'S CONNECT / BOOK TEST
+            </a>
+            <a href="#services" class="btn btn-secondary">
+              <i data-feather="activity"></i> Diagnostic Tech
             </a>
           </div>
 
@@ -98,64 +137,44 @@
           </div>
         </div>
 
-        <!-- Hero Laboratory Visual Container -->
+        <!-- Hero Visual Showcase -->
         <div class="hero-visual-wrapper">
           <div class="hero-image-box">
             <img src="assets/page_1_img_1.jpeg" alt="Roche Cobas e411 Automated Immunoassay Analyzer at URL" class="hero-lab-img">
             <div class="hero-img-caption">
-              <i data-feather="cpu"></i> Cobas e411 Automated Analyzer in URL Reference Lab
+              <i data-feather="activity"></i> Roche Cobas e411 ElectroChemiLuminescence Immunoassay Analyzer at URL Head Office
             </div>
+          </div>
+
+          <!-- Floating Stat Badge -->
+          <div class="hero-floating-stat">
+            <div class="stat-num">1.2M+</div>
+            <div class="stat-lbl">Satisfied Patients<br>Served in Nepal</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Milestones & Impact Numbers -->
-  <section class="section section-alt" id="milestones">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Impact & Trust</span>
-        <h2 class="section-title">Our Major Milestones</h2>
-        <p class="section-desc">Pioneering reference diagnostics, community health camps, and quality patient care in Nepal since 2013.</p>
-      </div>
+  <!-- Continuous Infinite Marquee Ticker (Nepal Madhyam Style) -->
+  <section class="marquee-section">
+    <div class="marquee-header">
+      <span class="marquee-title">OUR ACCREDITATIONS & US FDA-APPROVED TECHNOLOGY PARTNERS</span>
+    </div>
+    <div class="marquee-wrapper">
+      <div class="marquee-track">
+        <div class="marquee-item"><img src="assets/iso_9001_logo.jpg" alt="ISO 9001 Logo" class="marquee-partner-logo"> <span>ISO 9001:2015 Quality Certified</span></div>
+        <div class="marquee-item"><img src="assets/roche_logo.jpg" alt="Roche Logo" class="marquee-partner-logo"> <span>Roche Diagnostics (Cobas e411)</span></div>
+        <div class="marquee-item"><img src="assets/fda_logo.jpg" alt="US FDA Seal" class="marquee-partner-logo"> <span>US FDA-Approved Systems</span></div>
+        <div class="marquee-item"><i data-feather="check-circle"></i> <span>NPHL Category 'B' Licensed</span></div>
+        <div class="marquee-item"><i data-feather="heart"></i> <span>232+ Free Health Camps</span></div>
 
-      <div class="milestones-grid">
-        <div class="milestone-card">
-          <div class="milestone-icon"><i data-feather="users"></i></div>
-          <div class="milestone-number">1.2M+</div>
-          <div class="milestone-label">Clients / Customers Served</div>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-icon"><i data-feather="map-pin"></i></div>
-          <div class="milestone-number">24+</div>
-          <div class="milestone-label">Service Outlets Across Gandaki</div>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-icon"><i data-feather="home"></i></div>
-          <div class="milestone-number">500+</div>
-          <div class="milestone-label">Referral Centers</div>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-icon"><i data-feather="heart"></i></div>
-          <div class="milestone-number">2000+</div>
-          <div class="milestone-label">Doctors' Trust</div>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-icon"><i data-feather="activity"></i></div>
-          <div class="milestone-number">232+</div>
-          <div class="milestone-label">Free Health Camps Conducted</div>
-        </div>
-
-        <div class="milestone-card">
-          <div class="milestone-icon"><i data-feather="gift"></i></div>
-          <div class="milestone-number">3 Lakhs+</div>
-          <div class="milestone-label">Free Services Provided</div>
-        </div>
+        <!-- Duplicated items for seamless infinite ticker loop -->
+        <div class="marquee-item"><img src="assets/iso_9001_logo.jpg" alt="ISO 9001 Logo" class="marquee-partner-logo"> <span>ISO 9001:2015 Quality Certified</span></div>
+        <div class="marquee-item"><img src="assets/roche_logo.jpg" alt="Roche Logo" class="marquee-partner-logo"> <span>Roche Diagnostics (Cobas e411)</span></div>
+        <div class="marquee-item"><img src="assets/fda_logo.jpg" alt="US FDA Seal" class="marquee-partner-logo"> <span>US FDA-Approved Systems</span></div>
+        <div class="marquee-item"><i data-feather="check-circle"></i> <span>NPHL Category 'B' Licensed</span></div>
+        <div class="marquee-item"><i data-feather="heart"></i> <span>232+ Free Health Camps</span></div>
       </div>
     </div>
   </section>
@@ -163,49 +182,294 @@
   <!-- About URL Section -->
   <section class="section" id="about">
     <div class="container">
-      <div class="about-intro-header" style="max-width: 860px; margin-bottom: 34px;">
-        <span class="section-subtitle">About URL Group</span>
-        <h2 class="section-title">United Reference Laboratory Pvt. Ltd.</h2>
-        <p style="font-size: 1.02rem; line-height: 1.6; color: var(--text-main); margin-bottom: 12px;">
-          Established on 23rd Mangsir 2070 (2013) in Pokhara, United Reference Laboratory (URL) is a trusted diagnostic leader in Nepal. Equipped with a strong network of 24 outlets across Gandaki Province (Kaski, Tanahun, Lamjung, Syangja, Nawalpur, Baglung), URL brings advanced reference-level diagnostics closer to communities.
-        </p>
-        <p style="font-size: 0.94rem; line-height: 1.6; color: var(--text-muted);">
-          Driven by cutting-edge technology, stringent ISO 15189 / NABL quality standards, and a dedicated team of over 180 professionals and 68 shareholders, URL fulfills the vital need for specialized, highly sensitive diagnostic testing locally—eliminating the need to send samples abroad.
-        </p>
+      <div class="section-header">
+        <span class="section-subtitle">Pioneering Diagnostics</span>
+        <h2 class="section-title">About United Reference Laboratory</h2>
+        <p class="section-desc">Established on 23rd Mangsir 2070 (2013) in Pokhara, URL is Gandaki Province's premier reference laboratory. Driven by US FDA-approved technology and over 180 professionals, we perform specialized diagnostics locally without requiring sample dispatches abroad.</p>
       </div>
 
-      <!-- 3 Pillars Grid: Vision, Mission, Values -->
-      <div class="about-pillars-grid">
-        <div class="pillar-card vision-card">
-          <div class="pillar-icon"><i data-feather="eye"></i></div>
-          <h3 class="pillar-title" style="color: var(--brand-green);">Our Vision</h3>
-          <p class="pillar-text">To be Nepal’s most reliable, technology-driven, and internationally accredited reference laboratory, recognized for precision diagnostics, scientific excellence, and patient-centered services.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i data-feather="shield"></i></div>
+          <h4>Government Accredited</h4>
+          <p>NPHL Approved Category 'B' License (Reg: 116029) and ISO 9001:2015 Quality Certification.</p>
         </div>
 
-        <div class="pillar-card mission-card">
-          <div class="pillar-icon"><i data-feather="target"></i></div>
-          <h3 class="pillar-title" style="color: var(--brand-red);">Our Mission</h3>
-          <p class="pillar-text">To deliver accurate, timely, and evidence-based diagnostic services aligned with global standards, robust quality control (IQC/EQAS), continuous innovation, and ethical governance.</p>
+        <div class="why-card">
+          <div class="why-icon"><i data-feather="activity"></i></div>
+          <h4>US FDA-Approved Tech</h4>
+          <p>Roche Cobas e411 ECL Immunoassay, Cormay Accent M320 Chemistry & HPLC Diabetes Systems.</p>
         </div>
 
-        <div class="pillar-card values-card">
-          <div class="pillar-icon"><i data-feather="shield-check"></i></div>
-          <h3 class="pillar-title" style="color: var(--text-heading);">URL Core Values</h3>
-          <ul class="pillar-values-list">
-            <li><i data-feather="check-circle"></i> Accountability & Ethical Compliance</li>
-            <li><i data-feather="check-circle"></i> Accuracy & Reliability</li>
-            <li><i data-feather="check-circle"></i> Continuous Improvement</li>
-            <li><i data-feather="check-circle"></i> Customer/Patient-Centric Care</li>
-            <li><i data-feather="check-circle"></i> Innovation & Digitalization</li>
-            <li><i data-feather="check-circle"></i> Scientific Excellence</li>
-            <li><i data-feather="check-circle"></i> Transparency & Integrity</li>
-          </ul>
+        <div class="why-card">
+          <div class="why-icon"><i data-feather="map-pin"></i></div>
+          <h4>24 Outlets Network</h4>
+          <p>Widespread presence across Kaski, Tanahun, Lamjung, Syangja, Nawalpur, and Baglung districts.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon"><i data-feather="heart"></i></div>
+          <h4>Community Service</h4>
+          <p>Over 232 free health camps conducted and 3 Lakhs+ free diagnostic tests provided to citizens.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Official Accreditation & Certificates Section -->
+  <!-- Services Showcase with Category Pills (Nepal Madhyam Style) -->
+  <section class="section section-alt" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">World-Class Equipment & Departments</span>
+        <h2 class="section-title">Laboratory Departments & High-Tech Analyzers</h2>
+        <p class="section-desc">Governed by a robust Quality Management System (QMS) with strict internal quality control (IQC) and external quality assurance (EQAS) programs.</p>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="filter-pills-wrapper">
+        <button class="filter-pill active" data-filter="all">All Departments</button>
+        <button class="filter-pill" data-filter="immunoassay">Immunoassay & Hormones</button>
+        <button class="filter-pill" data-filter="chemistry">Clinical Chemistry</button>
+        <button class="filter-pill" data-filter="hplc">HPLC & Diabetes</button>
+        <button class="filter-pill" data-filter="histopathology">Histopathology & LBC</button>
+        <button class="filter-pill" data-filter="microbiology">Microbiology & Culture</button>
+      </div>
+
+      <!-- Tech Cards Grid -->
+      <div class="tech-grid">
+        <!-- Card 1 -->
+        <div class="tech-card" data-category="immunoassay">
+          <div class="tech-img-wrapper">
+            <img src="assets/page_8_img_1.jpeg" alt="Roche Cobas e411 Immunoassay Analyzer" class="tech-img">
+            <span class="tech-badge">US FDA Approved</span>
+          </div>
+          <div class="tech-card-body">
+            <h3>Roche Cobas e411 ECL Analyzer</h3>
+            <p>Compact, fully automated immunoassay analyzer using patented ElectroChemiLuminescence (ECL) technology for superior analytical sensitivity.</p>
+            <ul class="tech-list">
+              <li><strong>Hormones:</strong> TSH, FT3, FT4, Prolactin, Insulin, LH, FSH, AMH, PTH</li>
+              <li><strong>Cardiac Risk:</strong> Troponin T, Troponin-hs, CK-MB, Myoglobin</li>
+              <li><strong>Tumor Markers:</strong> PSA, CA-125, CA 19.9, CA-21.1, HE4, AFP, CEA</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="tech-card" data-category="chemistry">
+          <div class="tech-img-wrapper">
+            <img src="assets/page_10_img_1.jpeg" alt="Cormay Accent M320 Clinical Chemistry Analyzer" class="tech-img">
+            <span class="tech-badge">CE Marked & ISO 13485</span>
+          </div>
+          <div class="tech-card-body">
+            <h3>Cormay Accent M320 Chemistry</h3>
+            <p>Fully automated, computer-controlled clinical chemistry analyzer complying with European Union IVDR regulations for high-throughput biochemistry.</p>
+            <ul class="tech-list">
+              <li><strong>Liver/Hepatic:</strong> ALT, AST, ALP, Bilirubin (Total/Direct), GGT, Albumin</li>
+              <li><strong>Renal/Kidney:</strong> Creatinine (Enzymatic/Jaffe), Urea, Uric Acid, Microalbumin</li>
+              <li><strong>Diabetic & Cardiac:</strong> Glucose, HbA1c Direct, Fructosamine, Lactate, CK, LDH</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="tech-card" data-category="hplc">
+          <div class="tech-img-wrapper">
+            <img src="assets/page_11_img_1.jpeg" alt="HPLC Liquid Chromatography System" class="tech-img">
+            <span class="tech-badge">Gold Standard</span>
+          </div>
+          <div class="tech-card-body">
+            <h3>HPLC Diabetes & Thalassemia System</h3>
+            <p>High-Performance Liquid Chromatography offering gold-standard precision for diabetes monitoring and hemoglobinopathy screening.</p>
+            <ul class="tech-list">
+              <li><strong>HbA1c Monitoring:</strong> Gold standard for diabetes tracking</li>
+              <li><strong>Genetic Screening:</strong> Thalassemia & Hemoglobin Variant analysis</li>
+              <li><strong>High Speed:</strong> Direct quantitative measurements without repeats</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="tech-card" data-category="histopathology">
+          <div class="tech-img-wrapper">
+            <img src="assets/page_12_img_2.jpeg" alt="KDE Tissue Processing & Embedding System" class="tech-img">
+            <span class="tech-badge">Histopathology</span>
+          </div>
+          <div class="tech-card-body">
+            <h3>KDE Tissue Processing & Embedding</h3>
+            <p>State-of-the-art tissue embedding system for surgical pathology, biopsy examination, and cancer margin evaluation.</p>
+            <ul class="tech-list">
+              <li><strong>Biopsy Examination:</strong> Microscopic diagnostic analysis of tissues</li>
+              <li><strong>Cancer Staging:</strong> Stage evaluation & surgical margin checks</li>
+              <li><strong>LBC Cytology:</strong> Clean cervical cancer screening & HPV DNA testing</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="tech-card" data-category="microbiology">
+          <div class="tech-img-wrapper">
+            <img src="assets/page_12_img_1.jpeg" alt="Microbiology Unit & Laminar Airflow" class="tech-img">
+            <span class="tech-badge">Biosafety Certified</span>
+          </div>
+          <div class="tech-card-body">
+            <h3>Microbiology & Culture Unit</h3>
+            <p>Comprehensive pathogen testing and automated sensitivity analysis in a controlled, biosafety-certified environment.</p>
+            <ul class="tech-list">
+              <li><strong>Cultures:</strong> Urine, Blood, Sputum, Pus culture & sensitivity</li>
+              <li><strong>Microscopy:</strong> Gram staining, AFB tuberculosis testing & Fungal studies</li>
+              <li><strong>Infectious Disease:</strong> HIV, Hepatitis B/C, Dengue, Scrub Typhus</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connected Diagnostic Process Section (Nepal Madhyam Process Timeline Style) -->
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Quality Controlled Workflow</span>
+        <h2 class="section-title">Our 5-Step Diagnostic Process</h2>
+        <p class="section-desc">From seamless sample collection to consultant verification, our process guarantees precision and rapid turnaround.</p>
+      </div>
+
+      <div class="process-timeline">
+        <!-- Animated Connecting Progress Pulse Line -->
+        <div class="progress-pulse-dot"></div>
+
+        <!-- Step 1 -->
+        <div class="process-step step-theme-green">
+          <div class="step-node"><span class="step-num">1</span></div>
+          <div class="step-content">
+            <div class="step-badge-tag"><i data-feather="user-check"></i> STEP 01 &bull; WALK-IN OR HOME</div>
+            <h3>Sample Collection & Registration</h3>
+            <p>Walk-in at any of our 24 service outlets or request home sample collection. Samples are barcoded instantly for zero error tracking.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="process-step step-theme-red">
+          <div class="step-node"><span class="step-num">2</span></div>
+          <div class="step-content">
+            <div class="step-badge-tag"><i data-feather="shield"></i> STEP 02 &bull; SAFETY & CHECK</div>
+            <h3>Pre-Analytical Safety Check</h3>
+            <p>Barcoded samples undergo rigorous centrifugation, plasma separation, and volume checks following international biosafety protocols.</p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="process-step step-theme-green">
+          <div class="step-node"><span class="step-num">3</span></div>
+          <div class="step-content">
+            <div class="step-badge-tag"><i data-feather="activity"></i> STEP 03 &bull; HIGH-TECH ANALYZER</div>
+            <h3>US FDA Automated Testing</h3>
+            <p>Samples are processed using US FDA-approved analyzers (Roche Cobas e411, Cormay Accent M320, HPLC) with automatic calibration.</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="process-step step-theme-red">
+          <div class="step-node"><span class="step-num">4</span></div>
+          <div class="step-content">
+            <div class="step-badge-tag"><i data-feather="check-circle"></i> STEP 04 &bull; EXPERT VERIFY</div>
+            <h3>Pathologist & Biochemist Verification</h3>
+            <p>All test outputs are evaluated by our expert consultant Pathologists, Microbiologists, and Biochemists prior to report release.</p>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="process-step step-theme-green">
+          <div class="step-node"><span class="step-num">5</span></div>
+          <div class="step-content">
+            <div class="step-badge-tag"><i data-feather="file-text"></i> STEP 05 &bull; INSTANT REPORT</div>
+            <h3>Instant Digital Report Delivery</h3>
+            <p>Receive your official QR-verified PDF report via SMS, Email, or Online Web Portal with doctor consultation guidance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark Studio Stats & Capability Accent Section (Nepal Madhyam Dark Theme) -->
+  <!-- Dark Studio Stats & Capability Accent Section (Continuous Sliding Marquee) -->
+  <section class="dark-stats-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle" style="color: var(--brand-green);">Proven Impact & Scale</span>
+        <h2 class="section-title">Premier Reference Laboratory in Nepal</h2>
+        <p class="section-desc">Leading Gandaki Province in reference diagnostics, medical education, and community health services.</p>
+      </div>
+    </div>
+
+    <!-- Continuous Infinite Horizontal Slider -->
+    <div class="stats-marquee-wrapper">
+      <div class="stats-marquee-track">
+        <div class="stat-card">
+          <div class="stat-number" data-target="24" data-suffix="+">0+</div>
+          <div class="stat-label">Service Outlets Across 6 Districts</div>
+        </div>
+
+        <div class="stat-card card-red">
+          <div class="stat-number red-glow" data-target="1.2" data-decimals="1" data-suffix="M+">0M+</div>
+          <div class="stat-label">Clients & Patients Served</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number" data-target="2000" data-suffix="+">0+</div>
+          <div class="stat-label">Referring Doctors' Trust</div>
+        </div>
+
+        <div class="stat-card card-red">
+          <div class="stat-number red-glow" data-target="232" data-suffix="+">0+</div>
+          <div class="stat-label">Free Health Camps Conducted</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number" data-target="500" data-suffix="+">0+</div>
+          <div class="stat-label">Partner Referral Centers</div>
+        </div>
+
+        <div class="stat-card card-red">
+          <div class="stat-number red-glow" data-target="3" data-suffix=" Lakhs+">0 Lakhs+</div>
+          <div class="stat-label">Free Services Provided</div>
+        </div>
+
+        <!-- Duplicated items for seamless continuous infinite sliding loop -->
+        <div class="stat-card">
+          <div class="stat-number" data-target="24" data-suffix="+">0+</div>
+          <div class="stat-label">Service Outlets Across 6 Districts</div>
+        </div>
+
+        <div class="stat-card card-red">
+          <div class="stat-number red-glow" data-target="1.2" data-decimals="1" data-suffix="M+">0M+</div>
+          <div class="stat-label">Clients & Patients Served</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number" data-target="2000" data-suffix="+">0+</div>
+          <div class="stat-label">Referring Doctors' Trust</div>
+        </div>
+
+        <div class="stat-card card-red">
+          <div class="stat-number red-glow" data-target="232" data-suffix="+">0+</div>
+          <div class="stat-label">Free Health Camps Conducted</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number" data-target="500" data-suffix="+">0+</div>
+          <div class="stat-label">Partner Referral Centers</div>
+        </div>
+
+        <div class="stat-card card-red">
+          <div class="stat-number red-glow" data-target="3" data-suffix=" Lakhs+">0 Lakhs+</div>
+          <div class="stat-label">Free Services Provided</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accreditations & Certificates Section -->
   <section class="section section-alt" id="accreditation">
     <div class="container">
       <div class="section-header">
@@ -224,7 +488,7 @@
         </div>
 
         <div class="cert-card">
-          <img src="assets/page_5_img_2.jpeg" alt="ISO 9001:2015 Certificate of Registration - BMS CERT" class="cert-img">
+          <img src="assets/page_5_img_2.jpeg" alt="ISO 9001:2015 Certificate of Registration" class="cert-img">
           <div class="cert-info">
             <h4>ISO 9001:2015 Quality Management Certificate</h4>
             <p>International Organization for Standardization (ISO) Quality Management System Certification by BMS CERT</p>
@@ -234,156 +498,48 @@
     </div>
   </section>
 
-  <!-- Diagnostic Departments & Advanced Technology -->
-  <section class="section" id="services">
+  <!-- Leadership & Experts Section -->
+  <section class="section" id="leadership">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle">World-Class Equipment & Specializations</span>
-        <h2 class="section-title">Laboratory Departments & High-Tech Analyzers</h2>
-        <p class="section-desc">Governed by a robust Quality Management System (QMS) with strict internal quality control (IQC) and external quality assurance (EQA) programs.</p>
+        <span class="section-subtitle">Executive Governance & Medical Faculty</span>
+        <h2 class="section-title">Leadership & Medical Consultants</h2>
+        <p class="section-desc">Guided by visionary entrepreneurs and experienced consultant pathologists, microbiologists, and biochemists.</p>
       </div>
 
-      <!-- Equipment Highlights with Authentic Photos -->
-      <div class="tech-highlight-grid" style="margin-bottom: 40px;">
-        <div class="tech-card">
-          <div class="tech-img-wrapper">
-            <img src="assets/page_8_img_1.jpeg" alt="Roche Cobas e411 Immunoassay Analyzer" class="tech-img">
-          </div>
-          <div class="tech-badge">US FDA Approved</div>
-          <h3>Roche Cobas e411 Analyzer</h3>
-          <p>Compact, fully automated immunoassay analyzer using patented ElectroChemiLuminescence (ECL) technology for superior analytical sensitivity.</p>
-          <ul class="tech-list">
-            <li><strong>Hormones:</strong> TSH, FT3, FT4, Prolactin, Insulin, LH, FSH, AMH, PTH</li>
-            <li><strong>Cardiac Risk Markers:</strong> Troponin T, Troponin-hs, CK-MB, Myoglobin</li>
-            <li><strong>Tumor Markers:</strong> Prostate PSA, CA-125, CA 19.9, CA-21.1, HE4, AFP, CEA</li>
-            <li><strong>Specialty Tests:</strong> Vitamin B12, Vitamin D3, Tacrolimus levels</li>
-          </ul>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-img-wrapper">
-            <img src="assets/page_10_img_1.jpeg" alt="Cormay Accent M320 Clinical Chemistry Analyzer" class="tech-img">
-          </div>
-          <div class="tech-badge">CE Marked & ISO 13485</div>
-          <h3>Cormay Accent M320 Analyzer</h3>
-          <p>Fully automated, computer-controlled clinical chemistry analyzer complying with European Union IVDR regulations.</p>
-          <ul class="tech-list">
-            <li><strong>Liver/Hepatic:</strong> ALT, AST, ALP, Bilirubin (Total/Direct), GGT, Albumin</li>
-            <li><strong>Renal/Kidney:</strong> Creatinine (Enzymatic/Jaffe), Urea, Uric Acid, Microalbumin</li>
-            <li><strong>Diabetic & Cardiac:</strong> Glucose, HbA1c Direct, Fructosamine, Lactate, CK, LDH</li>
-            <li><strong>Electrolytes & Proteins:</strong> Na+, K+, Cl-, Calcium, ASO, RF, Ferritin, CRP</li>
-          </ul>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-img-wrapper">
-            <img src="assets/page_11_img_1.jpeg" alt="HPLC Liquid Chromatography System" class="tech-img">
-          </div>
-          <div class="tech-badge">Gold Standard</div>
-          <h3>HPLC Diabetes & Thalassemia System</h3>
-          <p>High-Performance Liquid Chromatography offering superior precision and speed for critical health markers.</p>
-          <ul class="tech-list">
-            <li><strong>HbA1c Monitoring:</strong> Gold standard for diabetes management</li>
-            <li><strong>Genetic Screening:</strong> Screening for genetic blood disorders like Thalassemia</li>
-            <li><strong>High Speed & Accuracy:</strong> Direct quantitative measurements without repeats</li>
-          </ul>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-img-wrapper">
-            <img src="assets/page_12_img_2.jpeg" alt="KDE Tissue Processing & Embedding System" class="tech-img">
-          </div>
-          <div class="tech-badge">Advanced Histopathology</div>
-          <h3>KDE Tissue Processing & Embedding</h3>
-          <p>State-of-the-art K-D tissue embedding system for definitive disease diagnosis and surgical pathology.</p>
-          <ul class="tech-list">
-            <li><strong>Biopsy Examination:</strong> Microscopic analysis of tissues</li>
-            <li><strong>Cancer Staging:</strong> Stage evaluation, tumor spread & surgical margins</li>
-            <li><strong>Liquid-Based Cytology (LBC):</strong> Clean cervical cancer screening & HPV DNA testing</li>
-          </ul>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-img-wrapper">
-            <img src="assets/page_12_img_1.jpeg" alt="Microbiology Unit & Laminar Airflow" class="tech-img">
-          </div>
-          <div class="tech-badge">Controlled Biosafety</div>
-          <h3>Microbiology & Culture Unit</h3>
-          <p>Comprehensive pathogen testing in a controlled, biosafety-certified laboratory environment.</p>
-          <ul class="tech-list">
-            <li><strong>Cultures:</strong> Urine, Blood, Sputum, Pus culture & sensitivity</li>
-            <li><strong>Microscopy:</strong> Gram staining, AFB tuberculosis testing & Fungal studies</li>
-            <li><strong>Infectious Disease:</strong> HIV, Hepatitis B/C, Dengue, Scrub Typhus</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- Smart Tips Section (Page 14) -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Patient Education</span>
-        <h2 class="section-title">7 Smart Tips to Consider in Diagnostic Lab Testing</h2>
-      </div>
-
-      <div class="tips-grid">
-        <div class="tip-card"><span class="tip-num">1</span><p>Verify NPHL registration and category accreditation.</p></div>
-        <div class="tip-card"><span class="tip-num">2</span><p>Choose ISO 9001:2015 certified and trusted laboratories.</p></div>
-        <div class="tip-card"><span class="tip-num">3</span><p>Confirm tests are performed locally within Nepal for quick TAT.</p></div>
-        <div class="tip-card"><span class="tip-num">4</span><p>Prefer laboratories with US FDA-approved automated systems.</p></div>
-        <div class="tip-card"><span class="tip-num">5</span><p>Ensure reports are reviewed and signed by qualified specialists.</p></div>
-        <div class="tip-card"><span class="tip-num">6</span><p>Avoid unrealistically low-cost test offers compromising quality.</p></div>
-        <div class="tip-card"><span class="tip-num">7</span><p>Check reviews, hygiene, and sample collection standards.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Leadership & Board of Directors -->
-  <section class="section section-alt" id="leadership">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-subtitle">Board of Directors & Executive Management</span>
-        <h2 class="section-title">Leadership & Founder Messages</h2>
-      </div>
-
-      <!-- Main Board & Executive Directors -->
-      <div class="leadership-photo-grid" style="margin-bottom: 40px;">
+      <div class="leadership-grid">
         <div class="leader-photo-card">
-          <img src="assets/page_3_img_1.jpeg" alt="Thakur Prasad Pantha - Chairman & Founder" class="leader-avatar">
+          <img src="assets/page_3_img_1.jpeg" alt="Thakur Prasad Pantha" class="leader-avatar">
           <div class="leader-body">
             <h3>Thakur Prasad Pantha</h3>
             <span class="leader-role">Chairman & Founder</span>
-            <p class="leader-quote">"Over the past 13+ years, URL has emerged as Gandaki's first reference laboratory, serving 1.2 million individuals with 1,200+ physicians' trust. We remain committed to excellence, innovation, and compassionate service."</p>
+            <p class="leader-quote">"Over the past 13+ years, URL has emerged as Gandaki's first reference laboratory, serving 1.2 million individuals with 2,000+ physicians' trust."</p>
           </div>
         </div>
 
         <div class="leader-photo-card">
-          <img src="assets/page_6_img_1.jpeg" alt="Ganesh Prasad Koirala - Managing Director" class="leader-avatar">
+          <img src="assets/page_6_img_1.jpeg" alt="Ganesh Prasad Koirala" class="leader-avatar">
           <div class="leader-body">
             <h3>Ganesh Prasad Koirala</h3>
             <span class="leader-role">Managing Director</span>
-            <p class="leader-quote">"Healthcare is about people, trust, and care. Our goal has always been to provide accurate diagnostic services while giving back to our community through 232+ free health camps."</p>
+            <p class="leader-quote">"Healthcare is about trust and care. Our goal has always been to provide accurate diagnostic services while giving back through 232+ free health camps."</p>
           </div>
         </div>
 
         <div class="leader-photo-card">
-          <img src="assets/page_13_img_2.jpeg" alt="Puspa Raj Koirala - HR & Admin Director" class="leader-avatar">
+          <img src="assets/page_13_img_2.jpeg" alt="Puspa Raj Koirala" class="leader-avatar">
           <div class="leader-body">
             <h3>Puspa Raj Koirala</h3>
             <span class="leader-role">HR & Admin Director</span>
-            <p class="leader-quote">"Supported by over 50 shareholders and 180+ staff members, we carry a strong sense of responsibility, transparency, and service excellence for Nepal's healthcare sector."</p>
+            <p class="leader-quote">"Supported by over 50 shareholders and 180+ staff members, we carry a strong sense of responsibility and service excellence for Nepal's healthcare sector."</p>
           </div>
         </div>
       </div>
 
-      <!-- Additional Directors Row -->
-      <div class="directors-small-grid" style="margin-bottom: 50px;">
+      <!-- Additional Directors Chips -->
+      <div class="directors-chips-grid">
         <div class="director-chip">
-          <img src="assets/page_24_img_1.jpeg" alt="Geeta Karki Pantha - Director" class="director-chip-img">
+          <img src="assets/page_24_img_1.jpeg" alt="Geeta Karki Pantha" class="director-chip-img">
           <div>
             <h4>Geeta Karki Pantha</h4>
             <span>Director</span>
@@ -391,7 +547,7 @@
         </div>
 
         <div class="director-chip">
-          <img src="assets/page_24_img_2.jpeg" alt="Dr. Basanta Pageni - Director" class="director-chip-img">
+          <img src="assets/page_24_img_2.jpeg" alt="Dr. Basanta Pageni" class="director-chip-img">
           <div>
             <h4>Dr. Basanta Pageni</h4>
             <span>Director</span>
@@ -399,7 +555,7 @@
         </div>
 
         <div class="director-chip">
-          <img src="assets/page_24_img_4.jpeg" alt="Balakrishna Sharma - Director" class="director-chip-img">
+          <img src="assets/page_24_img_4.jpeg" alt="Balakrishna Sharma" class="director-chip-img">
           <div>
             <h4>Balakrishna Sharma</h4>
             <span>Director</span>
@@ -407,110 +563,83 @@
         </div>
 
         <div class="director-chip">
-          <img src="assets/page_17_img_1.jpeg" alt="Baburam Giri - Chairperson Shishuwa Hospital" class="director-chip-img">
+          <img src="assets/page_17_img_1.jpeg" alt="Baburam Giri" class="director-chip-img">
           <div>
             <h4>Baburam Giri</h4>
-            <span>Chairperson – Shishuwa Hospital</span>
-          </div>
-        </div>
-
-        <div class="director-chip">
-          <img src="assets/page_17_img_2.jpeg" alt="Gokarna Karki - Chairperson PCCI" class="director-chip-img">
-          <div>
-            <h4>Gokarna Karki</h4>
-            <span>Chairperson, PCCI</span>
+            <span>Chairperson – Shishuwa</span>
           </div>
         </div>
       </div>
 
-      <!-- Consultant Doctors & Technical Head Grid -->
-      <h3 style="font-size: 1.5rem; text-align: center; margin-bottom: 26px; color: var(--text-heading);">Medical Consultants & Technical Experts</h3>
+      <!-- Consultants Showcase -->
+      <h3 style="text-align: center; margin: 40px 0 24px; font-size: 1.6rem; color: var(--text-heading);">Medical Consultants & Technical Experts</h3>
       <div class="consultants-photo-grid">
         <div class="doctor-card">
-          <img src="assets/page_13_img_1.jpeg" alt="Bikram Thapa - MSc. MLT Biochemist" class="doctor-img">
+          <img src="assets/page_13_img_1.jpeg" alt="Bikram Thapa" class="doctor-img">
           <div class="doctor-info">
             <h4>Bikram Thapa</h4>
-            <span class="doc-spec">MSc. MLT Biochemist | Lab Technical Head</span>
-            <p>"We strictly follow SOPs, routine QC calibration, and equipment maintenance under continuous expert supervision."</p>
+            <span class="doc-spec">MSc. MLT Biochemist | Lab Head</span>
+            <p>"We strictly follow SOPs, routine QC calibration, and equipment maintenance under expert supervision."</p>
           </div>
         </div>
 
         <div class="doctor-card">
-          <img src="assets/page_11_img_2.jpeg" alt="Prof. Dr. Buddhi Bdr. Thapa - Chief Consultant Physician" class="doctor-img">
+          <img src="assets/page_11_img_2.jpeg" alt="Prof. Dr. Buddhi Bdr. Thapa" class="doctor-img">
           <div class="doctor-info">
             <h4>Prof. Dr. Buddhi Bdr. Thapa</h4>
             <span class="doc-spec">Chief Consultant Physician</span>
-            <p>"URL introduced a wide range of advanced diagnostic tests locally in Pokhara, offering international-standard reports."</p>
+            <p>"URL introduced advanced diagnostic tests locally in Pokhara, offering international-standard reports."</p>
           </div>
         </div>
 
         <div class="doctor-card">
-          <img src="assets/page_9_img_1.jpeg" alt="Dr. Biraj Baral - Endocrinology & Metabolism" class="doctor-img">
+          <img src="assets/page_9_img_1.jpeg" alt="Dr. Biraj Baral" class="doctor-img">
           <div class="doctor-info">
             <h4>Dr. Biraj Baral</h4>
-            <span class="doc-spec">MBBS, MD, DM (Endocrinology & Metabolism)</span>
-            <p>"By utilizing US FDA-approved technology, URL provides the high-quality reports essential for modern endocrine practice."</p>
+            <span class="doc-spec">MD, DM (Endocrinology)</span>
+            <p>"By utilizing US FDA-approved ECL technology, URL provides high-quality reports essential for endocrine care."</p>
           </div>
         </div>
 
         <div class="doctor-card">
-          <img src="assets/page_12_img_3.jpeg" alt="Dr. Krishna Raj Adhikari - Consultant Physician" class="doctor-img">
+          <img src="assets/page_12_img_3.jpeg" alt="Dr. Krishna Raj Adhikari" class="doctor-img">
           <div class="doctor-info">
             <h4>Dr. Krishna Raj Adhikari</h4>
-            <span class="doc-spec">Consultant Physician MBBS, MD | Director</span>
-            <p>"A high-quality report reduces treatment burden. URL reports are so reliable that I rarely require repeat testing."</p>
+            <span class="doc-spec">Consultant Physician MD | Director</span>
+            <p>"URL reports are so reliable and accurate that repeat testing is rarely necessary."</p>
           </div>
         </div>
 
         <div class="doctor-card">
-          <img src="assets/page_14_img_1.jpeg" alt="Dr. Aarjawee Paudel - Consultant Microbiologist" class="doctor-img">
+          <img src="assets/page_14_img_1.jpeg" alt="Dr. Aarjawee Paudel" class="doctor-img">
           <div class="doctor-info">
             <h4>Dr. Aarjawee Paudel</h4>
-            <span class="doc-spec">MBBS, MD, Consultant Microbiologist</span>
-            <p>"We perform comprehensive aerobic cultures, tuberculosis testing, and serological investigations with strict quality control."</p>
+            <span class="doc-spec">MD, Consultant Microbiologist</span>
+            <p>"We perform comprehensive bacterial cultures, TB testing, and serology with strict biosafety control."</p>
           </div>
         </div>
 
         <div class="doctor-card">
-          <img src="assets/page_14_img_2.jpeg" alt="Dr. Bishowraj Baral - Consultant Pathologist" class="doctor-img">
+          <img src="assets/page_14_img_2.jpeg" alt="Dr. Bishowraj Baral" class="doctor-img">
           <div class="doctor-info">
             <h4>Dr. Bishowraj Baral</h4>
-            <span class="doc-spec">MBBS, MD, Consultant Pathologist</span>
-            <p>"Liquid-Based Cytology (LBC) & HPV DNA testing offer cleaner, highly accurate cervical screening for women's health."</p>
-          </div>
-        </div>
-
-        <div class="doctor-card">
-          <img src="assets/page_15_img_1.jpeg" alt="Dr. Irada Adhikari - Consultant Pathologist" class="doctor-img">
-          <div class="doctor-info">
-            <h4>Dr. Irada Adhikari</h4>
-            <span class="doc-spec">MBBS, MD, Consultant Pathologist</span>
-            <p>"Histopathology is the Gold Standard for definitive diagnosis of biopsy tissues and surgical margins."</p>
-          </div>
-        </div>
-
-        <div class="doctor-card">
-          <img src="assets/page_16_img_1.jpeg" alt="Dr. Anuja Bhandari Thapa - Consultant Pathologist" class="doctor-img">
-          <div class="doctor-info">
-            <h4>Dr. Anuja Bhandari Thapa</h4>
-            <span class="doc-spec">MBBS, MD, Consultant Pathologist</span>
-            <p>"Delivering definitive diagnoses through detailed analysis of Tissues, Blood, Pap Smears, and Pathological Specimens."</p>
+            <span class="doc-spec">MD, Consultant Pathologist</span>
+            <p>"Liquid-Based Cytology (LBC) & HPV DNA testing offer cleaner, highly accurate cervical screening."</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Community Impact & Event Gallery (Pages 18, 19, 20) -->
-  <section class="section" id="gallery">
+  <!-- Event Galleries Accordion Drawers -->
+  <section class="section section-alt" id="gallery">
     <div class="container">
       <div class="section-header">
         <span class="section-subtitle">CSR & Events</span>
-        <h2 class="section-title">Interactive Event Galleries</h2>
-        <p class="section-desc">Click on any event category below to slide down and view its dedicated photo gallery.</p>
+        <h2 class="section-title">Interactive Event Photo Galleries</h2>
+        <p class="section-desc">Click any event category card below to slide down its photo gallery.</p>
       </div>
 
-      <!-- Event Category Cards List (In-Place Accordions) -->
       <div class="event-cat-grid">
         <!-- Category 1 -->
         <div class="event-card-wrapper">
@@ -587,98 +716,109 @@
     </div>
   </section>
 
-  <!-- 24 Service Outlets & Contact Section -->
-  <section class="section section-alt" id="branches">
+  <!-- 24 Service Outlets & Branch Directory -->
+  <section class="section" id="branches">
     <div class="container">
       <div class="section-header">
-        <span class="section-subtitle">24 Service Outlets Across Gandaki Province</span>
-        <h2 class="section-title">Head Office & Branch Network Photos</h2>
-        <p class="section-desc">Pokhara, Damauli, Beshisahar, Syangja, Waling, Baglung, Kawasoti & surrounding regions.</p>
+        <span class="section-subtitle">Gandaki Network</span>
+        <h2 class="section-title">24 Service Outlets Across 6 Districts</h2>
+        <p class="section-desc">Filter branches by district to find contact numbers and locations.</p>
       </div>
 
-      <!-- Head Office Showcase -->
-      <div class="head-office-card" style="margin-bottom: 40px;">
+      <!-- Head Office Highlight Card -->
+      <div class="head-office-card">
         <div class="head-office-content">
           <span class="badge-head">HEAD OFFICE</span>
           <h3>UNITED REFERENCE LABORATORY PVT. LTD.</h3>
           <p><i data-feather="map-pin"></i> Giri Complex, New Road, Pokhara-8, Kaski, Nepal</p>
           <p><i data-feather="phone"></i> Phone: +977-61-570503, 543503 | Mob: 9856013595</p>
-          <p><i data-feather="mail"></i> Email: urlnepal@gmail.com | Website: www.url.com.np</p>
+          <p><i data-feather="mail"></i> Email: urlnepal@gmail.com | Web: www.url.com.np</p>
         </div>
         <div class="head-office-24h">
-          <h4>24-Hour Hospital Chowk Facility</h4>
+          <h4>24-Hour Hospital Chowk Branch</h4>
           <p>Pokhara-12, Hospitalchowk | Tel: +977-61-584289, 9856013592</p>
         </div>
       </div>
 
-      <!-- Branch Visual Showcase Grid with Authentic Photos -->
+      <!-- District Filter Bar -->
+      <div class="district-filter-bar">
+        <button class="district-btn active" data-district="all">All Outlets</button>
+        <button class="district-btn" data-district="kaski">Kaski (Pokhara)</button>
+        <button class="district-btn" data-district="tanahun">Tanahun</button>
+        <button class="district-btn" data-district="lamjung">Lamjung</button>
+        <button class="district-btn" data-district="syangja">Syangja</button>
+        <button class="district-btn" data-district="nawalpur">Nawalpur</button>
+        <button class="district-btn" data-district="baglung">Baglung</button>
+      </div>
+
+      <!-- Branch Photo Cards Grid -->
       <div class="branch-photo-grid">
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_9.jpeg" alt="URL Head Office Staff Team" class="branch-img">
+        <div class="branch-photo-card" data-district="kaski">
+          <img src="assets/page_21_img_9.jpeg" alt="URL Head Office" class="branch-img">
           <div class="branch-info">
             <h4>URL Head Office Team</h4>
             <p>New Road, Pokhara-8 | Tel: +977-61-570503</p>
           </div>
         </div>
 
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_8.jpeg" alt="URL Hospital Chowk 24 Hour Branch" class="branch-img">
+        <div class="branch-photo-card" data-district="kaski">
+          <img src="assets/page_21_img_8.jpeg" alt="URL Hospital Chowk 24/7" class="branch-img">
           <div class="branch-info">
             <h4>URL Hospital Chowk (24/7)</h4>
             <p>Pokhara-12, Hospitalchowk | Tel: +977-61-584289</p>
           </div>
         </div>
 
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_1.jpeg" alt="URL Damauli Diagnostic Branch" class="branch-img">
+        <div class="branch-photo-card" data-district="tanahun">
+          <img src="assets/page_21_img_1.jpeg" alt="URL Damauli Branch" class="branch-img">
           <div class="branch-info">
             <h4>URL Damauli Branch</h4>
-            <p>Ansan Chautara Vyas-03, Tanahun | Tel: +977-65-565625</p>
+            <p>Ansan Chautara, Vyas-03 | Tel: +977-65-565625</p>
           </div>
         </div>
 
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_4.jpeg" alt="URL Syangja Diagnostic Branch" class="branch-img">
+        <div class="branch-photo-card" data-district="syangja">
+          <img src="assets/page_21_img_4.jpeg" alt="URL Syangja Branch" class="branch-img">
           <div class="branch-info">
             <h4>URL Syangja Branch</h4>
             <p>Putalibazar-1, Syangja | Tel: +977-63-590001</p>
           </div>
         </div>
 
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_2.jpeg" alt="URL Shishuwa Diagnostic Center" class="branch-img">
+        <div class="branch-photo-card" data-district="kaski">
+          <img src="assets/page_21_img_2.jpeg" alt="URL Shishuwa Branch" class="branch-img">
           <div class="branch-info">
             <h4>URL Shishuwa Branch</h4>
             <p>Pokhara-30, Shishuwa | Tel: +977-61-565165</p>
           </div>
         </div>
 
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_5.jpeg" alt="URL Dhaulagiri Baglung Branch" class="branch-img">
+        <div class="branch-photo-card" data-district="baglung">
+          <img src="assets/page_21_img_5.jpeg" alt="URL Dhaulagiri Branch" class="branch-img">
           <div class="branch-info">
-            <h4>URL Dhaulagiri Branch</h4>
+            <h4>URL Dhaulagiri Baglung</h4>
             <p>Balmandir Road-2, Baglung | Tel: +977-068-524515</p>
           </div>
         </div>
 
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_3.jpeg" alt="URL Kawasoti Nawalpur Branch" class="branch-img">
+        <div class="branch-photo-card" data-district="nawalpur">
+          <img src="assets/page_21_img_3.jpeg" alt="URL Kawasoti Branch" class="branch-img">
           <div class="branch-info">
             <h4>URL Kawasoti Branch</h4>
             <p>Kawasoti-8, Nawalpur | Mob: 9811485273</p>
           </div>
         </div>
 
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_6.jpeg" alt="URL Beshisahar Lamjung Branch" class="branch-img">
+        <div class="branch-photo-card" data-district="lamjung">
+          <img src="assets/page_21_img_6.jpeg" alt="URL Beshisahar Branch" class="branch-img">
           <div class="branch-info">
             <h4>URL Beshisahar Branch</h4>
             <p>Hospital Line, Lamjung | Tel: +977-66-521480</p>
           </div>
         </div>
 
-        <div class="branch-photo-card">
-          <img src="assets/page_21_img_7.jpeg" alt="URL Birauta Pokhara Branch" class="branch-img">
+        <div class="branch-photo-card" data-district="kaski">
+          <img src="assets/page_21_img_7.jpeg" alt="URL Birauta Branch" class="branch-img">
           <div class="branch-info">
             <h4>URL Birauta Branch</h4>
             <p>Pokhara-17, Birauta | Tel: +977-61-590083</p>
@@ -686,40 +826,99 @@
         </div>
       </div>
 
-      <!-- Additional Outlets Directory -->
-      <h4 style="font-size: 1.2rem; margin: 30px 0 16px; color: var(--text-heading);">Complete Branch Directory (24 Outlets)</h4>
-      <div class="branches-grid">
+      <!-- Additional Directory Listing -->
+      <h4 style="font-size: 1.15rem; margin-bottom: 16px; color: var(--text-heading);">Complete Branch Outlets Directory</h4>
+      <div class="branches-directory-grid">
         <div class="branch-item"><h4>URL Waling</h4><p>Waling-10, Syangja</p><span>Tel: 9856013597</span></div>
-        <div class="branch-item"><h4>URL Shuklagandaki</h4><p>Dulegauda & Belchautara-5, Tanahun</p><span>Tel: +977-65-414470</span></div>
-        <div class="branch-item"><h4>URL Batulechaur</h4><p>Pokhara-16, Batulechaur</p><span>Tel: 9856013591</span></div>
+        <div class="branch-item"><h4>URL Shuklagandaki</h4><p>Belchautara, Tanahun</p><span>Tel: +977-65-414470</span></div>
+        <div class="branch-item"><h4>URL Batulechaur</h4><p>Pokhara-16</p><span>Tel: 9856013591</span></div>
         <div class="branch-item"><h4>URL Sundarbajar</h4><p>Lamjung-Sundarbajar</p><span>Tel: 9856085133</span></div>
-        <div class="branch-item"><h4>URL Miyapatan</h4><p>Pokhara-13, Miyapatan</p><span>Tel: 9856018541</span></div>
-        <div class="branch-item"><h4>URL Khudi</h4><p>Pokhara-30, Khudi</p><span>Tel: 9856013598</span></div>
-        <div class="branch-item"><h4>URL Mohoriya</h4><p>Pokhara-30, Mohoriya</p><span>Tel: 9856018537</span></div>
-        <div class="branch-item"><h4>URL Lakeside</h4><p>Pokhara-6, Lakeside</p><span>Tel: +977-061-452612</span></div>
+        <div class="branch-item"><h4>URL Miyapatan</h4><p>Pokhara-13</p><span>Tel: 9856018541</span></div>
+        <div class="branch-item"><h4>URL Khudi</h4><p>Pokhara-30</p><span>Tel: 9856013598</span></div>
+        <div class="branch-item"><h4>URL Mohoriya</h4><p>Pokhara-30</p><span>Tel: 9856018537</span></div>
+        <div class="branch-item"><h4>URL Lakeside</h4><p>Pokhara-6</p><span>Tel: +977-061-452612</span></div>
       </div>
     </div>
   </section>
 
-  <!-- URL Group Team Banner -->
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="team-banner-card">
-        <img src="assets/page_22_img_1.jpeg" alt="URL Group Full Executive & Laboratory Team" class="team-banner-img">
-        <div class="team-banner-caption">
-          <h3>URL Group Family & Executive Team</h3>
-          <p>Over 180 professionals and 68 shareholders dedicated to diagnostic excellence in Nepal.</p>
+  <!-- High-Converting "LET'S CONNECT" Appointment Section -->
+  <section class="connect-section" id="connect">
+    <div class="connect-grid">
+      <div class="connect-info">
+        <h2>LET'S CONNECT</h2>
+        <p>Book your diagnostic test, schedule home sample collection, or request laboratory consultations with Gandaki Province's premier reference laboratory.</p>
+        
+        <div class="connect-details">
+          <div class="connect-detail-item">
+            <i data-feather="map-pin"></i>
+            <span>Head Office: Giri Complex, New Road, Pokhara-8, Kaski</span>
+          </div>
+          <div class="connect-detail-item">
+            <i data-feather="phone"></i>
+            <span>Phone: +977-61-570503, 543503, 9856013595</span>
+          </div>
+          <div class="connect-detail-item">
+            <i data-feather="clock"></i>
+            <span>24/7 Facility: Pokhara-12, Hospital Chowk</span>
+          </div>
+          <div class="connect-detail-item">
+            <i data-feather="mail"></i>
+            <span>Email: urlnepal@gmail.com</span>
+          </div>
         </div>
       </div>
+
+      <div class="connect-form-card">
+        <form id="appointment-connect-form">
+          <div class="form-group">
+            <label class="form-label" for="connect-name">Full Name *</label>
+            <input type="text" id="connect-name" class="form-input" placeholder="e.g. Ram Prasad Sharma" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="connect-phone">Mobile Phone Number *</label>
+            <input type="tel" id="connect-phone" class="form-input" placeholder="e.g. 98560XXXXX" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="connect-test-select">Select Test Category</label>
+            <select id="connect-test-select" class="form-select">
+              <option value="General Health Package">General Comprehensive Health Package</option>
+              <option value="Thyroid & Hormones (Roche ECL)">Thyroid & Hormones (Roche ECL)</option>
+              <option value="Diabetes (HPLC HbA1c)">Diabetes Screening (HPLC HbA1c)</option>
+              <option value="Lipid & Cardiac Markers">Lipid & Cardiac Risk Markers</option>
+              <option value="Histopathology / Biopsy">Histopathology & LBC Cytology</option>
+              <option value="Home Sample Collection">Home Sample Collection Request</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="connect-branch-select">Select Nearest Branch</label>
+            <select id="connect-branch-select" class="form-select">
+              <option value="Pokhara New Road (Head Office)">Pokhara New Road (Head Office)</option>
+              <option value="Pokhara Hospital Chowk (24/7)">Pokhara Hospital Chowk (24/7)</option>
+              <option value="Damauli Tanahun Branch">Damauli Tanahun Branch</option>
+              <option value="Syangja Putalibazar Branch">Syangja Putalibazar Branch</option>
+              <option value="Beshisahar Lamjung Branch">Beshisahar Lamjung Branch</option>
+              <option value="Baglung Dhaulagiri Branch">Baglung Dhaulagiri Branch</option>
+              <option value="Kawasoti Nawalpur Branch">Kawasoti Nawalpur Branch</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit-connect">
+            SUBMIT APPOINTMENT REQUEST
+          </button>
+        </form>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Main Footer -->
   <footer class="main-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="assets/logo.png" alt="URL Logo" style="height: 50px; background: white; padding: 4px 10px; border-radius: var(--radius-sm);">
+          <img src="assets/logo.png" alt="URL Logo" class="footer-logo-img">
           <p>UNITED REFERENCE LABORATORY PVT. LTD. (URL GROUP). Gandaki Province's first & leading reference laboratory since 2013. NPHL Category 'B' Licensed & ISO 9001:2015 Certified.</p>
         </div>
 
@@ -727,22 +926,22 @@
           <h4 class="footer-title">Navigation</h4>
           <ul class="footer-links">
             <li><a href="#about">About URL</a></li>
-            <li><a href="#accreditation">Accreditations</a></li>
             <li><a href="#services">Services & Tech</a></li>
-            <li><a href="#leadership">Leadership & Experts</a></li>
-            <li><a href="#gallery">Event Gallery</a></li>
-            <li><a href="#branches">24 Outlets Network</a></li>
+            <li><a href="#process">Diagnostic Process</a></li>
+            <li><a href="#accreditation">Accreditation</a></li>
+            <li><a href="#leadership">Leadership & Team</a></li>
+            <li><a href="#branches">24 Service Outlets</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-title">Key Specializations</h4>
+          <h4 class="footer-title">Specialized Testing</h4>
           <ul class="footer-links">
-            <li><a href="#services">Roche Cobas e411 ECL Immunoassay</a></li>
-            <li><a href="#services">Cormay Accent M320 Chemistry</a></li>
+            <li><a href="#services">Roche Cobas e411 ECL</a></li>
+            <li><a href="#services">Cormay Accent M320</a></li>
             <li><a href="#services">HPLC Diabetes & Thalassemia</a></li>
-            <li><a href="#services">Histopathology & LBC Cytology</a></li>
-            <li><a href="#services">Microbiology & Bacterial Cultures</a></li>
+            <li><a href="#services">Histopathology & LBC</a></li>
+            <li><a href="#services">Microbiology Cultures</a></li>
           </ul>
         </div>
 
@@ -761,12 +960,59 @@
     </div>
   </footer>
 
-  <!-- Image Lightbox Zoom Overlay -->
+  <!-- Lightbox Image Zoom Overlay -->
   <div class="lightbox-backdrop" id="image-lightbox" onclick="closeLightbox()">
     <div class="lightbox-content" onclick="event.stopPropagation()">
       <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
       <img id="lightbox-img" src="" alt="Zoomed Photo">
       <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- Custom Animated Success Popup Modal UI (Patient View) -->
+  <div class="custom-popup-backdrop" id="booking-success-modal" onclick="closeSuccessPopup()">
+    <div class="custom-popup-card" onclick="event.stopPropagation()">
+      <button class="popup-close-x" onclick="closeSuccessPopup()">&times;</button>
+      
+      <div class="popup-icon-wrapper">
+        <div class="popup-ring-ripple"></div>
+        <div class="popup-check-circle">
+          <i data-feather="check"></i>
+        </div>
+      </div>
+
+      <h3 class="popup-title">Appointment Request Submitted!</h3>
+      <p class="popup-desc">Thank you, <strong id="popup-patient-name" style="color: #15632F;">Patient</strong>! Your diagnostic test request has been saved to our system.</p>
+
+      <div class="popup-details-card">
+        <div class="popup-detail-row">
+          <span class="popup-lbl">Appointment Code:</span>
+          <span class="popup-val"><code id="popup-apt-code" class="popup-code-badge">APT-8927</code></span>
+        </div>
+        <div class="popup-detail-row">
+          <span class="popup-lbl">Selected Test:</span>
+          <span class="popup-val" id="popup-test-name">General Health Package</span>
+        </div>
+        <div class="popup-detail-row">
+          <span class="popup-lbl">Preferred Branch:</span>
+          <span class="popup-val" id="popup-branch-name">Pokhara New Road</span>
+        </div>
+        <div class="popup-detail-row">
+          <span class="popup-lbl">Contact Phone:</span>
+          <span class="popup-val" id="popup-phone-num" style="color: #15632F; font-weight: 800;">9827153492</span>
+        </div>
+      </div>
+
+      <div class="popup-notice-box">
+        <i data-feather="clock"></i>
+        <span>Our URL diagnostic representative will call you shortly to confirm your visit time.</span>
+      </div>
+
+      <div class="popup-actions-row">
+        <button class="btn-popup-primary" style="width: 100%;" onclick="closeSuccessPopup()">
+          <i data-feather="check-circle"></i> Done, Thank You!
+        </button>
+      </div>
     </div>
   </div>
 

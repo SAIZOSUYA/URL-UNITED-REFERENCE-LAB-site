@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal Login | United Reference Laboratory</title>
+  <link rel="stylesheet" href="style.css?v=2.5">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    body {
+      background-color: #F8FAFC;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(92, 184, 55, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(237, 28, 36, 0.06) 0%, transparent 40%);
+      font-family: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+      border: 1px solid #E2E8F0;
+      border-top: 5px solid #15632F;
+      padding: 36px 32px;
+      margin: 20px;
+      box-sizing: border-box;
+    }
+
+    .login-brand {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .login-brand img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+
+    .login-brand h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 0 0 4px;
+      color: #0F172A;
+    }
+
+    .login-brand p {
+      font-size: 0.86rem;
+      color: #64748B;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #334155;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border: 1.5px solid #CBD5E1;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      box-sizing: border-box;
+      outline: none;
+      transition: all 0.2s ease;
+      background: #F8FAFC;
+    }
+
+    .input-wrap input:focus {
+      border-color: #15632F;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(21, 99, 47, 0.12);
+    }
+
+    .input-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      width: 18px;
+      height: 18px;
+    }
+
+    .btn-login-submit {
+      width: 100%;
+      background: #15632F;
+      color: #FFFFFF;
+      border: none;
+      padding: 13px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.94rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(21, 99, 47, 0.25);
+    }
+
+    .btn-login-submit:hover {
+      background: #145E2C;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(21, 99, 47, 0.35);
+    }
+
+    .alert-error {
+      background: #FEF2F2;
+      color: #991118;
+      border: 1px solid #FECDD3;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .login-footer-info {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.8rem;
+      color: #94A3B8;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <div class="login-brand">
+      <img src="assets/logo.png" alt="URL Logo">
+      <h2>Restricted Admin Portal</h2>
+      <p>Sign in to view & manage diagnostic database</p>
+    </div>
+
+    <div class="alert-error" id="error-alert">
+      <i data-feather="alert-circle" style="width: 16px; height: 16px;"></i>
+      <span id="error-msg">Invalid Admin Credentials.</span>
+    </div>
+
+    <form id="admin-login-form">
+      <div class="form-group">
+        <label for="login-username">Admin Username</label>
+        <div class="input-wrap">
+          <i data-feather="user"></i>
+          <input type="text" id="login-username" placeholder="e.g. admin" required autocomplete="username">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="login-password">Password</label>
+        <div class="input-wrap">
+          <i data-feather="lock"></i>
+          <input type="password" id="login-password" placeholder="Enter password" required autocomplete="current-password">
+        </div>
+      </div>
+
+      <button type="submit" class="btn-login-submit" id="submit-btn">
+        <i data-feather="shield"></i> Authenticate & Log In
+      </button>
+    </form>
+
+    <div class="login-footer-info">
+      URL Diagnostic Center &bull; Production Admin Security
+    </div>
+  </div>
+
+  <script>
+    feather.replace();
+
+    // Check if already authenticated
+    const existingToken = localStorage.getItem('url_admin_token');
+    if (existingToken) {
+      fetch('/api/auth/verify', {
+        headers: { 'Authorization': 'Bearer ' + existingToken }
+      }).then(r => r.json()).then(data => {
+        if (data.success) {
+          window.location.href = 'dashboard.html';
+        } else {
+          localStorage.removeItem('url_admin_token');
+        }
+      }).catch(() => {});
+    }
+
+    document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      const submitBtn = document.getElementById('submit-btn');
+
+      const errorAlert = document.getElementById('error-alert');
+      errorAlert.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i data-feather="loader"></i> Authenticating...';
+      if (window.feather) feather.replace();
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+        if (res.ok && data.success && data.token) {
+          const expiresAt = Date.now() + (data.expiresInSeconds || 28800) * 1000;
+          localStorage.setItem('url_admin_token', data.token);
+          localStorage.setItem('url_admin_expires_at', expiresAt);
+          localStorage.setItem('url_admin_username', data.username || username);
+          window.location.href = 'dashboard.html';
+        } else {
+          errorAlert.style.display = 'flex';
+          document.getElementById('error-msg').innerText = data.message || 'Invalid Admin Credentials.';
+        }
+      } catch (err) {
+        errorAlert.style.display = 'flex';
+        document.getElementById('error-msg').innerText = 'Server error or rate limit exceeded.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i data-feather="shield"></i> Authenticate & Log In';
+        if (window.feather) feather.replace();
+      }
+    });
+  </script>
+</body>
+</html>

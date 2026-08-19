@@ -14,8 +14,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'url_diag_production_secure_jwt_secret_key_84920482094';
@@ -142,14 +140,73 @@ function requireAdminAuth(req, res, next) {
   }
 }
 
-// 5. SQLITE DATABASE INITIALIZATION
-const db = new sqlite3.Database(DB_FILE, (err) => {
-  if (err) {
-    console.error('❌ Failed to open SQLite Database:', err);
-  } else {
-    console.log(`🗄️ Connected to SQLite Database at: ${DB_FILE}`);
+// 5. SQLITE DATABASE INITIALIZATION (Dual Engine Loader with better-sqlite3 Fallback)
+function createDbConnection(dbPath) {
+  try {
+    const sqlite3 = require('sqlite3').verbose();
+    const instance = new sqlite3.Database(dbPath, (err) => {
+      if (err) console.error('❌ Failed to open SQLite Database:', err);
+      else console.log(`🗄️ Connected to SQLite Database (sqlite3) at: ${dbPath}`);
+    });
+    return instance;
+  } catch (e) {
+    try {
+      const Database = require('better-sqlite3');
+      const bdb = new Database(dbPath);
+      console.log(`🗄️ Connected to SQLite Database (better-sqlite3 fallback) at: ${dbPath}`);
+      return {
+        serialize: (fn) => fn(),
+        run: function(sql, params, cb) {
+          if (typeof params === 'function') { cb = params; params = []; }
+          try {
+            const info = bdb.prepare(sql).run(...(params || []));
+            if (cb) cb.call({ lastID: Number(info.lastInsertRowid), changes: info.changes }, null);
+          } catch (err) {
+            if (cb) cb(err);
+          }
+        },
+        get: function(sql, params, cb) {
+          if (typeof params === 'function') { cb = params; params = []; }
+          try {
+            const row = bdb.prepare(sql).get(...(params || []));
+            if (cb) cb(null, row);
+          } catch (err) {
+            if (cb) cb(err);
+          }
+        },
+        all: function(sql, params, cb) {
+          if (typeof params === 'function') { cb = params; params = []; }
+          try {
+            const rows = bdb.prepare(sql).all(...(params || []));
+            if (cb) cb(null, rows);
+          } catch (err) {
+            if (cb) cb(err);
+          }
+        },
+        prepare: function(sql) {
+          const stmt = bdb.prepare(sql);
+          return {
+            run: function(...args) {
+              const cb = typeof args[args.length - 1] === 'function' ? args.pop() : null;
+              try {
+                const info = stmt.run(...args);
+                if (cb) cb.call({ lastID: Number(info.lastInsertRowid), changes: info.changes }, null);
+              } catch (err) {
+                if (cb) cb(err);
+              }
+            },
+            finalize: function() {}
+          };
+        }
+      };
+    } catch (err2) {
+      console.error('❌ Database connection error:', err2);
+      throw err2;
+    }
   }
-});
+}
+
+const db = createDbConnection(DB_FILE);
 
 // Database Schema Setup with Migrations
 db.serialize(() => {

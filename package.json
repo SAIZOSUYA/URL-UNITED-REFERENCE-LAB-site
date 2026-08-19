@@ -4,7 +4,7 @@
   "description": "Node.js & Express Live Admin Backend for United Reference Laboratory (URL)",
   "main": "server.js",
   "engines": {
-    "node": ">=18.0.0 <23.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "start": "node server.js",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
     "cors": "^2.8.5",
     "dotenv": "^17.4.2",
     "express": "^4.19.2",

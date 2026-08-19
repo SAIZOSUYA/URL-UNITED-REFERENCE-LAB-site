@@ -331,7 +331,7 @@ app.post('/api/auth/login', loginLimiter, (req, res) => {
 
   const auth = getAdminAuth();
   const defaultUser = process.env.ADMIN_DEFAULT_USERNAME || 'admin';
-  const defaultPass = process.env.ADMIN_DEFAULT_PASSWORD || 'URLDiagAdmin2026Secured!';
+  const defaultPass = process.env.ADMIN_DEFAULT_PASSWORD || 'unitedrl12';
 
   const cleanUser = String(username).trim();
   const cleanPass = String(password).trim();
@@ -340,7 +340,7 @@ app.post('/api/auth/login', loginLimiter, (req, res) => {
   const isPassMatch = isUserMatch && (
     bcrypt.compareSync(cleanPass, auth.passwordHash) ||
     cleanPass === defaultPass ||
-    cleanPass === 'URLDiagAdmin2026Secured!'
+    cleanPass === 'unitedrl12'
   );
 
   if (!isPassMatch) {

@@ -55,7 +55,7 @@ The repository includes [`vercel.json`](vercel.json) configured for Vercel serve
 
 Default login credentials on first run:
 - **Username**: `admin`
-- **Password**: `URLDiagAdmin2026Secured!`
+- **Password**: `unitedrl12`
 
 ### Changing Admin Passwords:
 Update `ADMIN_DEFAULT_PASSWORD` in `.env`, then run:

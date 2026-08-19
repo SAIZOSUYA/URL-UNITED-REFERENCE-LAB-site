@@ -16,7 +16,7 @@ services:
       - key: ADMIN_DEFAULT_USERNAME
         value: admin
       - key: ADMIN_DEFAULT_PASSWORD
-        value: URLDiagAdmin2026Secured!
+        value: unitedrl12
     disk:
       name: sqlite-data
       mountPath: /app/data

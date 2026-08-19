@@ -2957,7 +2957,7 @@ img {
 .custom-popup-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(7, 37, 23, 0.78);
+  background: rgba(15, 23, 42, 0.78);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 999999;
@@ -2966,36 +2966,38 @@ img {
   justify-content: center;
   padding: 20px;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .custom-popup-backdrop.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
-@keyframes popupSpringIn {
-  0% { opacity: 0; transform: scale(0.7) translateY(40px); }
-  65% { opacity: 1; transform: scale(1.03) translateY(-6px); }
-  100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
 .custom-popup-card {
-  background: #FFFFFF;
+  background: #FFFFFF !important;
+  color: #0F172A !important;
   width: 100%;
   max-width: 480px;
   border-radius: 24px;
-  padding: 32px 28px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  padding: 32px 26px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
   position: relative;
   text-align: center;
-  border-top: 5px solid #15632F;
+  border-top: 6px solid #15632F;
   box-sizing: border-box;
+  transform: scale(0.92) translateY(20px);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
+  z-index: 1000000;
+  opacity: 0;
 }
 
 .custom-popup-backdrop.active .custom-popup-card {
-  animation: popupSpringIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  transform: scale(1) translateY(0);
+  opacity: 1;
 }
 
 .popup-close-x {

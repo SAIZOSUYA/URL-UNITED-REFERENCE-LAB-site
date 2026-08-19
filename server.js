@@ -407,9 +407,9 @@ app.post('/api/appointments', (req, res) => {
     return res.status(400).json({ success: false, message: 'Mobile Phone number is required.' });
   }
 
-  const cleanPhone = phone.trim();
-  const phoneRegex = /^[0-9\s\-+]{7,15}$/;
-  if (!phoneRegex.test(cleanPhone)) {
+  const cleanPhone = String(phone).trim();
+  const digitsOnly = cleanPhone.replace(/\D/g, '');
+  if (digitsOnly.length < 7 || digitsOnly.length > 15) {
     return res.status(400).json({ success: false, message: 'Please enter a valid phone number (7 to 15 digits).' });
   }
 

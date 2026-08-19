@@ -281,11 +281,14 @@ function setupConnectForm() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ name, phone, test, branch })
         });
-        if (res.ok) {
-          const data = await res.json();
-          if (data.success && data.appointment) {
-            savedRecord = data.appointment;
-          }
+        let data = {};
+        try { data = await res.json(); } catch (e) {}
+
+        if (res.ok && data.success && data.appointment) {
+          savedRecord = data.appointment;
+        } else if (!res.ok && data.message) {
+          alert(data.message);
+          return;
         }
       } catch (err) {
         console.warn('Appointment API offline, recording to local storage fallback.');

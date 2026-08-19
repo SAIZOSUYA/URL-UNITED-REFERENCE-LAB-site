@@ -230,7 +230,9 @@
           body: JSON.stringify({ username, password })
         });
 
-        const data = await res.json();
+        let data = {};
+        try { data = await res.json(); } catch(e) {}
+
         if (res.ok && data.success && data.token) {
           const expiresAt = Date.now() + (data.expiresInSeconds || 28800) * 1000;
           localStorage.setItem('url_admin_token', data.token);
@@ -239,11 +241,11 @@
           window.location.href = 'dashboard.html';
         } else {
           errorAlert.style.display = 'flex';
-          document.getElementById('error-msg').innerText = data.message || 'Invalid Admin Credentials.';
+          document.getElementById('error-msg').innerText = data.message || 'Invalid Admin Username or Password.';
         }
       } catch (err) {
         errorAlert.style.display = 'flex';
-        document.getElementById('error-msg').innerText = 'Server error or rate limit exceeded.';
+        document.getElementById('error-msg').innerText = 'Unable to connect to live backend server. Please try again.';
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i data-feather="shield"></i> Authenticate & Log In';

@@ -2,6 +2,7 @@ services:
   - type: web
     name: url-united-reference-lab
     runtime: node
+    plan: free
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -17,7 +18,4 @@ services:
         value: admin
       - key: ADMIN_DEFAULT_PASSWORD
         value: unitedrl12
-    disk:
-      name: sqlite-data
-      mountPath: /app/data
-      sizeGB: 1
+

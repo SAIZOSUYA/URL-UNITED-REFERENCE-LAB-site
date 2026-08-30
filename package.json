@@ -4,7 +4,7 @@
   "description": "Node.js & Express Live Admin Backend for United Reference Laboratory (URL)",
   "main": "server.js",
   "engines": {
-    "node": ">=18.0.0"
+    "node": "20.x"
   },
   "scripts": {
     "start": "node server.js",
@@ -12,13 +12,14 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
-    "better-sqlite3": "^13.0.3",
     "cors": "^2.8.5",
     "dotenv": "^17.4.2",
     "express": "^4.19.2",
     "express-rate-limit": "^8.6.2",
     "helmet": "^8.3.0",
-    "jsonwebtoken": "^9.0.3",
-    "sqlite3": "5.1.7"
+    "jsonwebtoken": "^9.0.3"
+  },
+  "devDependencies": {
+    "vercel": "^59.10.0"
   }
 }

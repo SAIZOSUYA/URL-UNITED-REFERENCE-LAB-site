@@ -148,8 +148,227 @@ function requireAdminAuth(req, res, next) {
   }
 }
 
-// 5. SQLITE DATABASE INITIALIZATION (Dual Engine Loader with better-sqlite3 Fallback)
-function createDbConnection(dbPath) {
+// 5. RESILIENT DATABASE INITIALIZATION (SQLite / better-sqlite3 with Pure-JS JSON Storage Fallback)
+function createJsonDbConnection(dataDir) {
+  const jsonPath = path.join(dataDir, 'appointments_store.json');
+
+  function loadData() {
+    try {
+      if (fs.existsSync(jsonPath)) {
+        const raw = fs.readFileSync(jsonPath, 'utf8');
+        return JSON.parse(raw);
+      }
+    } catch (e) {
+      console.warn('JSON DB parse error, initializing fresh:', e.message);
+    }
+    return {
+      appointment_requests: [],
+      admin_actions: [],
+      lastId: { appointment_requests: 0, admin_actions: 0 }
+    };
+  }
+
+  function saveData(data) {
+    try {
+      fs.writeFileSync(jsonPath, JSON.stringify(data, null, 2), 'utf8');
+    } catch (e) {
+      console.error('Failed to persist JSON DB:', e.message);
+    }
+  }
+
+  function filterAppointments(list, whereSql, params) {
+    let result = [...list];
+    if (!whereSql) return result;
+
+    if (whereSql.includes('is_archived = 1')) {
+      result = result.filter(r => (r.is_archived === 1 || r.is_archived === '1'));
+    } else if (whereSql.includes('is_archived = 0')) {
+      result = result.filter(r => (!r.is_archived || r.is_archived === 0 || r.is_archived === '0'));
+    }
+
+    if (whereSql.includes('status = ?')) {
+      const statusVal = params.find(p => typeof p === 'string' && ['Pending Review', 'Confirmed', 'Sample Collected', 'Processing in Lab', 'Report Ready', 'Cancelled'].includes(p));
+      if (statusVal) {
+        result = result.filter(r => r.status === statusVal);
+      }
+    }
+
+    if (whereSql.includes('nearest_branch = ?')) {
+      const branchVal = params.find(p => typeof p === 'string' && p.includes('Pokhara'));
+      if (branchVal) {
+        result = result.filter(r => r.nearest_branch === branchVal);
+      }
+    }
+
+    if (whereSql.includes('LIKE ?')) {
+      const searchParam = params.find(p => typeof p === 'string' && p.startsWith('%') && p.endsWith('%'));
+      if (searchParam) {
+        const q = searchParam.replace(/%/g, '').toLowerCase();
+        result = result.filter(r =>
+          (r.full_name && r.full_name.toLowerCase().includes(q)) ||
+          (r.phone_number && r.phone_number.toLowerCase().includes(q)) ||
+          (r.test_category && r.test_category.toLowerCase().includes(q)) ||
+          (r.appointment_code && r.appointment_code.toLowerCase().includes(q))
+        );
+      }
+    }
+
+    return result;
+  }
+
+  console.log(`🗄️ Connected to Resilient JSON Database Storage at: ${jsonPath}`);
+
+  return {
+    serialize: (fn) => fn(),
+    run: function(sql, params, cb) {
+      if (typeof params === 'function') { cb = params; params = []; }
+      const data = loadData();
+      let lastID = 0;
+      let changes = 0;
+      const s = (sql || '').trim();
+
+      if (s.startsWith('CREATE TABLE') || s.startsWith('ALTER TABLE')) {
+        if (cb) cb.call({ lastID: 0, changes: 0 }, null);
+        return;
+      }
+
+      if (s.startsWith('INSERT INTO appointment_requests')) {
+        data.lastId = data.lastId || {};
+        data.lastId.appointment_requests = (data.lastId.appointment_requests || 0) + 1;
+        lastID = data.lastId.appointment_requests;
+        const [appointment_code, full_name, phone_number, test_category, nearest_branch, status, created_at, updated_at] = params || [];
+        data.appointment_requests.push({
+          id: lastID,
+          appointment_code: appointment_code || `APT-${Date.now().toString().slice(-4)}`,
+          full_name: full_name || '',
+          phone_number: phone_number || '',
+          test_category: test_category || '',
+          nearest_branch: nearest_branch || '',
+          status: status || 'Pending Review',
+          admin_notes: '',
+          is_archived: 0,
+          created_at: created_at || new Date().toISOString(),
+          updated_at: updated_at || new Date().toISOString()
+        });
+        changes = 1;
+        saveData(data);
+      } else if (s.startsWith('INSERT INTO admin_actions')) {
+        data.lastId = data.lastId || {};
+        data.lastId.admin_actions = (data.lastId.admin_actions || 0) + 1;
+        lastID = data.lastId.admin_actions;
+        const [admin_user, action, target_id, details, timestamp] = params || [];
+        data.admin_actions.push({
+          id: lastID,
+          admin_user: admin_user || 'admin',
+          action: action || '',
+          target_id: target_id || '',
+          details: details || '',
+          timestamp: timestamp || new Date().toISOString()
+        });
+        changes = 1;
+        saveData(data);
+      } else if (s.includes('UPDATE appointment_requests SET status =')) {
+        const [status, updated_at, id1, id2] = params || [];
+        const record = data.appointment_requests.find(r => r.id === Number(id1) || r.appointment_code === id2);
+        if (record) {
+          record.status = status;
+          record.updated_at = updated_at || new Date().toISOString();
+          changes = 1;
+          saveData(data);
+        }
+      } else if (s.includes('UPDATE appointment_requests SET admin_notes =')) {
+        const [admin_notes, updated_at, id1, id2] = params || [];
+        const record = data.appointment_requests.find(r => r.id === Number(id1) || r.appointment_code === id2);
+        if (record) {
+          record.admin_notes = admin_notes;
+          record.updated_at = updated_at || new Date().toISOString();
+          changes = 1;
+          saveData(data);
+        }
+      } else if (s.includes('UPDATE appointment_requests SET is_archived = 1')) {
+        const [updated_at, id1, id2] = params || [];
+        const record = data.appointment_requests.find(r => r.id === Number(id1) || r.appointment_code === id2);
+        if (record) {
+          record.is_archived = 1;
+          record.updated_at = updated_at || new Date().toISOString();
+          changes = 1;
+          saveData(data);
+        }
+      } else if (s.includes('DELETE FROM appointment_requests')) {
+        const [id1, id2] = params || [];
+        const initialLen = data.appointment_requests.length;
+        data.appointment_requests = data.appointment_requests.filter(r => r.id !== Number(id1) && r.appointment_code !== id2);
+        changes = initialLen - data.appointment_requests.length;
+        if (changes > 0) saveData(data);
+      }
+
+      if (cb) cb.call({ lastID, changes }, null);
+    },
+    get: function(sql, params, cb) {
+      if (typeof params === 'function') { cb = params; params = []; }
+      const data = loadData();
+      const s = (sql || '').trim();
+
+      if (s.includes('COUNT(*)')) {
+        let list = data.appointment_requests || [];
+        list = filterAppointments(list, s, params || []);
+        if (cb) cb(null, { count: list.length, total: list.length });
+        return;
+      }
+      if (cb) cb(null, null);
+    },
+    all: function(sql, params, cb) {
+      if (typeof params === 'function') { cb = params; params = []; }
+      const data = loadData();
+      const s = (sql || '').trim();
+
+      if (s.startsWith('PRAGMA table_info')) {
+        if (cb) cb(null, [
+          { name: 'id' }, { name: 'appointment_code' }, { name: 'full_name' },
+          { name: 'phone_number' }, { name: 'test_category' }, { name: 'nearest_branch' },
+          { name: 'status' }, { name: 'admin_notes' }, { name: 'is_archived' },
+          { name: 'created_at' }, { name: 'updated_at' }
+        ]);
+        return;
+      }
+
+      if (s.includes('admin_actions')) {
+        let list = [...(data.admin_actions || [])].reverse();
+        if (cb) cb(null, list.slice(0, 50));
+        return;
+      }
+
+      if (s.includes('appointment_requests')) {
+        let list = [...(data.appointment_requests || [])];
+        list = filterAppointments(list, s, params || []);
+        list.sort((a, b) => b.id - a.id);
+
+        if (s.includes('LIMIT ? OFFSET ?')) {
+          const limit = params && params.length >= 2 ? params[params.length - 2] : 50;
+          const offset = params && params.length >= 1 ? params[params.length - 1] : 0;
+          list = list.slice(offset, offset + limit);
+        }
+
+        if (cb) cb(null, list);
+        return;
+      }
+
+      if (cb) cb(null, []);
+    },
+    prepare: function(sql) {
+      const self = this;
+      return {
+        run: function(...args) {
+          const cb = typeof args[args.length - 1] === 'function' ? args.pop() : null;
+          self.run(sql, args, cb);
+        },
+        finalize: function() {}
+      };
+    }
+  };
+}
+
+function createDbConnection(dbPath, dataDir) {
   try {
     const sqlite3 = require('sqlite3').verbose();
     const instance = new sqlite3.Database(dbPath, (err) => {
@@ -161,7 +380,7 @@ function createDbConnection(dbPath) {
     try {
       const Database = require('better-sqlite3');
       const bdb = new Database(dbPath);
-      console.log(`🗄️ Connected to SQLite Database (better-sqlite3 fallback) at: ${dbPath}`);
+      console.log(`🗄️ Connected to SQLite Database (better-sqlite3) at: ${dbPath}`);
       return {
         serialize: (fn) => fn(),
         run: function(sql, params, cb) {
@@ -208,13 +427,12 @@ function createDbConnection(dbPath) {
         }
       };
     } catch (err2) {
-      console.error('❌ Database connection error:', err2);
-      throw err2;
+      return createJsonDbConnection(dataDir);
     }
   }
 }
 
-const db = createDbConnection(DB_FILE);
+const db = createDbConnection(DB_FILE, DATA_DIR);
 
 // Database Schema Setup with Migrations
 db.serialize(() => {

@@ -951,13 +951,14 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Start Server (Only when run directly, not imported by Vercel serverless)
+// Start Server (Only when run directly, not imported by serverless handlers)
 if (require.main === module) {
-  app.listen(PORT, () => {
+  const HOST = '0.0.0.0';
+  app.listen(PORT, HOST, () => {
     console.log(`
     🏥 =========================================================
     UNITED REFERENCE LABORATORY - PRODUCTION BACKEND
-    Running at: http://localhost:${PORT}
+    Running at: http://${HOST}:${PORT}
     Admin Login: http://localhost:${PORT}/admin-login.html
     Database Hub: http://localhost:${PORT}/dashboard.html
     Database File: ${DB_FILE}

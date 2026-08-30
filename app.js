@@ -557,6 +557,61 @@ function setup3DTiltEffect() {
   });
 }
 
+// Auto Play / Auto Stop Review Videos on Scroll
+function setupAutoVideoScrollPlay() {
+  const videos = document.querySelectorAll('.review-video');
+  const section = document.querySelector('#patient-video');
+  if (!videos.length || !section) return;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          videos.forEach(video => {
+            video.loop = true;
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(() => {
+                video.muted = true;
+                video.play().catch(() => {});
+              });
+            }
+          });
+        } else {
+          videos.forEach(video => {
+            if (!video.paused) {
+              video.pause();
+            }
+          });
+        }
+      });
+    }, {
+      threshold: 0.25
+    });
+
+    observer.observe(section);
+  }
+}
+
+// Auto-detect portrait orientation for review videos
+function setupVideoAspectDetection() {
+  document.querySelectorAll('.review-video').forEach(video => {
+    const checkOrientation = () => {
+      if (video.videoHeight && video.videoWidth && video.videoHeight > video.videoWidth) {
+        const container = video.closest('.video-container');
+        if (container) {
+          container.classList.add('portrait-container');
+        }
+      }
+    };
+    if (video.readyState >= 1) {
+      checkOrientation();
+    } else {
+      video.addEventListener('loadedmetadata', checkOrientation);
+    }
+  });
+}
+
 // Document Ready Initialization
 document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
@@ -568,6 +623,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupStatCounters();
   setupScrollTimelineDot();
   setup3DTiltEffect();
+  setupAutoVideoScrollPlay();
+  setupVideoAspectDetection();
   applyLiveContent();
 
   if (window.feather) feather.replace();
